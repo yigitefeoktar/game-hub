@@ -17,6 +17,9 @@ const FEATURED_GAME = {
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/react-chess.svg', gameUrl: 'https://react-chess.vercel.app' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/neon-drift.svg', gameUrl: 'https://neon-drift.vercel.app' },
+  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/gemini-clash-village.svg', gameUrl: 'https://gemini-clash-village.vercel.app' },
   { id: '1', title: 'Solitaire', iconUrl: 'https://picsum.photos/seed/solitaire/200/200', gameUrl: 'https://example.com/game1' },
   { id: '2', title: 'Adventure', iconUrl: 'https://picsum.photos/seed/adventure/200/200', gameUrl: 'https://example.com/game2' },
   { id: '3', title: 'Duck Pond', iconUrl: 'https://picsum.photos/seed/duck/200/200', gameUrl: 'https://example.com/game3' },

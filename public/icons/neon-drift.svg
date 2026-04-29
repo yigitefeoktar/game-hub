@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Neon Drift app icon</title>
+  <desc id="desc">A neon arcade ship cutting through a cyan and magenta boss ring.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#10213a"/>
+      <stop offset="46%" stop-color="#09091a"/>
+      <stop offset="100%" stop-color="#05020a"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="80" x2="432" y1="88" y2="424" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="48%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ff00ff"/>
+    </linearGradient>
+    <linearGradient id="ship" x1="256" x2="256" y1="156" y2="382" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="42%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#00ff66"/>
+    </linearGradient>
+    <filter id="glow" x="-45%" y="-45%" width="190%" height="190%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0 0 1 0 0 1 1 0 1 0 1 0 0 0 0.9 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="pinkGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0.85 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="rounded">
+      <rect width="512" height="512" rx="112"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#rounded)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <path d="M0 370c77-31 139-47 205-43 80 5 135 44 221 33 39-5 65-16 86-30v182H0Z" fill="#080018" opacity=".72"/>
+    <g opacity=".45" stroke="#00ffff" stroke-width="2">
+      <path d="M31 369h450M62 415h388M98 461h316"/>
+      <path d="M133 332 76 512M205 327 181 512M279 327l22 185M355 332l70 180"/>
+    </g>
+    <g fill="none" filter="url(#glow)">
+      <circle cx="256" cy="239" r="142" stroke="url(#ring)" stroke-width="12"/>
+      <circle cx="256" cy="239" r="98" stroke="#00ffff" stroke-width="3" opacity=".45" stroke-dasharray="18 15"/>
+    </g>
+    <g filter="url(#pinkGlow)">
+      <path d="M113 161 71 135M399 161l42-26M99 271H50M413 271h49" stroke="#ff00ff" stroke-width="10" stroke-linecap="round"/>
+    </g>
+    <path d="M256 92 318 356 256 318 194 356Z" fill="#020611" stroke="url(#ship)" stroke-width="13" stroke-linejoin="round" filter="url(#glow)"/>
+    <path d="M256 139 289 294 256 274 223 294Z" fill="#00ffff" opacity=".22"/>
+    <path d="M213 362h86l-43 88Z" fill="#ff00ff" opacity=".9" filter="url(#pinkGlow)"/>
+    <path d="M235 354h42l-21 62Z" fill="#ffffff" opacity=".92"/>
+    <circle cx="256" cy="238" r="15" fill="#ffffff" filter="url(#glow)"/>
+    <g fill="#ffffff" opacity=".78">
+      <circle cx="112" cy="96" r="4"/>
+      <circle cx="402" cy="92" r="3"/>
+      <circle cx="437" cy="232" r="4"/>
+      <circle cx="83" cy="245" r="3"/>
+      <circle cx="372" cy="409" r="3"/>
+    </g>
+  </g>
+</svg>
