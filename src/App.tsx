@@ -11,12 +11,12 @@ const FEATURED_GAME = {
   tag: 'Out Now',
   description: 'Command one of four unique factions in a strategic battle for total galactic control!',
   coverUrl: '/assets/war-of-planets.png',
-  iconUrl: '/icons/app-icon.svg',
+  iconUrl: '/assets/war-of-planets-promo.png',
   gameUrl: 'https://war-of-planets.vercel.app',
 };
 
 const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
+  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/assets/war-of-planets-promo.png', gameUrl: 'https://war-of-planets.vercel.app' },
   { id: '1', title: 'Solitaire', iconUrl: 'https://picsum.photos/seed/solitaire/200/200', gameUrl: 'https://example.com/game1' },
   { id: '2', title: 'Adventure', iconUrl: 'https://picsum.photos/seed/adventure/200/200', gameUrl: 'https://example.com/game2' },
   { id: '3', title: 'Duck Pond', iconUrl: 'https://picsum.photos/seed/duck/200/200', gameUrl: 'https://example.com/game3' },
