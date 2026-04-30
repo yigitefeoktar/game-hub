@@ -17,11 +17,17 @@ const FEATURED_GAME = {
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
+  { id: 'war-of-planets-ai-icon', title: 'War of Planets AI Icon', iconUrl: '/icons/ai-test/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/react-chess.svg', gameUrl: 'https://react-chess-sage-two.vercel.app' },
+  { id: 'react-chess-ai-icon', title: 'React Chess AI Icon', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/100-player-chess.svg', gameUrl: 'https://100playerchess.com' },
+  { id: '100-player-chess-ai-icon', title: '100 Player Chess AI Icon', iconUrl: '/icons/ai-test/100-player-chess-ai.png', gameUrl: 'https://100playerchess.com' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/neon-drift.svg', gameUrl: 'https://neon-drift-deploy.vercel.app' },
+  { id: 'neon-drift-ai-icon', title: 'Neon Drift AI Icon', iconUrl: '/icons/ai-test/neon-drift-ai.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/gemini-clash-village.svg', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: 'gemini-clash-village-ai-icon', title: 'Gemini Clash Village AI Icon', iconUrl: '/icons/ai-test/gemini-clash-village-ai.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
   { id: '1', title: 'Solitaire', iconUrl: 'https://picsum.photos/seed/solitaire/200/200', gameUrl: 'https://example.com/game1' },
+  { id: 'solitaire-ai-icon', title: 'Solitaire AI Icon', iconUrl: '/icons/ai-test/solitaire-ai.png', gameUrl: 'https://example.com/game1' },
   { id: '2', title: 'Adventure', iconUrl: 'https://picsum.photos/seed/adventure/200/200', gameUrl: 'https://example.com/game2' },
   { id: '3', title: 'Duck Pond', iconUrl: 'https://picsum.photos/seed/duck/200/200', gameUrl: 'https://example.com/game3' },
   { id: '4', title: 'Coffee Shop', iconUrl: 'https://picsum.photos/seed/coffee/200/200', gameUrl: 'https://example.com/game4' },
