@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { ExternalLink, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+// --- MOCK DATA ---
+// Replace the gameUrls with your actual game links, and icons with your own artwork.
 const FEATURED_GAME = {
   id: 'featured',
   title: 'War of Planets',
@@ -15,22 +17,72 @@ const FEATURED_GAME = {
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/react-chess-premium.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/100-player-chess-premium.png', gameUrl: 'https://100playerchess.com' },
-  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/neon-drift-premium.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
+  { id: 'war-of-planets-ai-icon', title: 'War of Planets AI Icon', iconUrl: '/icons/ai-test/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app' },
+  { id: 'war-of-planets-ai-icon-2', title: 'War of Planets AI Icon 2', iconUrl: '/icons/ai-test-2/war-of-planets-ai-2.png', gameUrl: 'https://war-of-planets.vercel.app' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/react-chess.svg', gameUrl: 'https://react-chess-sage-two.vercel.app' },
+  { id: 'react-chess-ai-icon', title: 'React Chess AI Icon', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
+  { id: 'react-chess-ai-icon-2', title: 'React Chess AI Icon 2', iconUrl: '/icons/ai-test-2/react-chess-ai-2.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/100-player-chess.svg', gameUrl: 'https://100playerchess.com' },
+  { id: '100-player-chess-ai-icon', title: '100 Player Chess AI Icon', iconUrl: '/icons/ai-test/100-player-chess-ai.png', gameUrl: 'https://100playerchess.com' },
+  { id: '100-player-chess-ai-icon-2', title: '100 Player Chess AI Icon 2', iconUrl: '/icons/ai-test-2/100-player-chess-ai-2.png', gameUrl: 'https://100playerchess.com' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/neon-drift.svg', gameUrl: 'https://neon-drift-deploy.vercel.app' },
+  { id: 'neon-drift-ai-icon', title: 'Neon Drift AI Icon', iconUrl: '/icons/ai-test/neon-drift-ai.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
+  { id: 'neon-drift-ai-icon-2', title: 'Neon Drift AI Icon 2', iconUrl: '/icons/ai-test-2/neon-drift-ai-2.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/gemini-clash-village.svg', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: 'gemini-clash-village-ai-icon', title: 'Gemini Clash Village AI Icon', iconUrl: '/icons/ai-test/gemini-clash-village-ai.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: 'gemini-clash-village-ai-icon-2', title: 'Gemini Clash Village AI Icon 2', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: '1', title: 'Solitaire', iconUrl: 'https://picsum.photos/seed/solitaire/200/200', gameUrl: 'https://example.com/game1' },
+  { id: 'solitaire-ai-icon', title: 'Solitaire AI Icon', iconUrl: '/icons/ai-test/solitaire-ai.png', gameUrl: 'https://example.com/game1' },
+  { id: 'solitaire-ai-icon-2', title: 'Solitaire AI Icon 2', iconUrl: '/icons/ai-test-2/solitaire-ai-2.png', gameUrl: 'https://example.com/game1' },
+  { id: '2', title: 'Adventure', iconUrl: 'https://picsum.photos/seed/adventure/200/200', gameUrl: 'https://example.com/game2' },
+  { id: '3', title: 'Duck Pond', iconUrl: 'https://picsum.photos/seed/duck/200/200', gameUrl: 'https://example.com/game3' },
+  { id: '4', title: 'Coffee Shop', iconUrl: 'https://picsum.photos/seed/coffee/200/200', gameUrl: 'https://example.com/game4' },
+  { id: '5', title: 'Racing', iconUrl: 'https://picsum.photos/seed/racing/200/200', gameUrl: 'https://example.com/game5' },
+  { id: '6', title: 'Puzzle', iconUrl: 'https://picsum.photos/seed/puzzle/200/200', gameUrl: 'https://example.com/game6' },
+  { id: '7', title: 'Strategy', iconUrl: 'https://picsum.photos/seed/strategy/200/200', gameUrl: 'https://example.com/game7' },
+  { id: '8', title: 'Neon Run', iconUrl: 'https://picsum.photos/seed/neon/200/200', gameUrl: 'https://example.com/game8' },
+  { id: '9', title: 'Magic Quest', iconUrl: 'https://picsum.photos/seed/quest/200/200', gameUrl: 'https://example.com/game9' },
+  { id: '10', title: 'Farm Life', iconUrl: 'https://picsum.photos/seed/farm/200/200', gameUrl: 'https://example.com/game10' },
+  { id: '11', title: 'Epic RPG', iconUrl: 'https://picsum.photos/seed/rpg/200/200', gameUrl: 'https://example.com/game11' },
+  { id: '12', title: 'Space', iconUrl: 'https://picsum.photos/seed/space/200/200', gameUrl: 'https://example.com/game12' },
+];
+
+const STORY_CARDS = [
+  {
+    id: 's1',
+    tag: 'THE STUDIO',
+    title: 'Why We Build Games',
+    description: 'We believe games should be instantly accessible. No downloads, no waiting. Just pure, unadulterated fun crafted with love and passion. Here is a look into our philosophy and why we started this journey.',
+    imageUrl: 'https://picsum.photos/seed/studio/800/1000',
+  },
+  {
+    id: 's2',
+    tag: 'DEVELOPER DIARY',
+    title: 'Designing War of Planets',
+    description: 'Creating a balanced sci-fi strategy game meant balancing hundreds of variables across four unique factions. Dive into our design notebook to see how we brought this galaxy to life.',
+    imageUrl: '/assets/war-of-planets-promo.png',
+  },
+  {
+    id: 's3',
+    tag: 'UPCOMING',
+    title: 'The 2026 Roadmap',
+    description: 'We are just getting started. Over the next few months, we will be rolling out three new puzzle games, a retro racing arcade, and maybe even a few surprises. Check out our timeline.',
+    imageUrl: 'https://picsum.photos/seed/roadmap2/800/1000',
+  }
 ];
 
 export default function App() {
   const [activeGame, setActiveGame] = useState<{ id: string; gameUrl: string; title: string } | null>(null);
+  const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl: string; tag: string } | null>(null);
 
+  // Stop body scroll when a game or story is active
   React.useEffect(() => {
-    if (activeGame) {
+    if (activeGame || activeStory) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [activeGame]);
+  }, [activeGame, activeStory]);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
@@ -58,10 +110,7 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 max-w-full md:max-w-md lg:max-w-xl">{FEATURED_GAME.title}</h2>
             <p className="text-sm md:text-base text-white/70 mb-6 max-w-full md:max-w-sm lg:max-w-md">{FEATURED_GAME.description}</p>
             
-            <button
-              onClick={() => setActiveGame(FEATURED_GAME)}
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 text-white font-semibold py-3 px-12 rounded-full transition-all duration-300"
-            >
+            <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 text-white font-semibold py-3 px-12 rounded-full transition-all duration-300">
               Play
             </button>
 
@@ -81,6 +130,12 @@ export default function App() {
         <section className="px-6 md:px-0 pb-12">
           <SectionHeader title="All Games" />
           <GameGrid games={ALL_GAMES} onPlay={(game) => setActiveGame(game)} />
+        </section>
+
+        {/* Stories / Editorial Section */}
+        <section className="px-6 md:px-0 pb-24">
+          <SectionHeader title="Behind the Games" />
+          <StoryGrid stories={STORY_CARDS} onStoryClick={setActiveStory} />
         </section>
 
       </main>
@@ -105,18 +160,6 @@ export default function App() {
                 <X className="w-6 h-6 text-white group-hover:text-red-400 transition-colors" strokeWidth={2.5} />
               </button>
             </div>
-
-            <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
-              <a
-                href={activeGame.gameUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-black/50 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-4 rounded-full transition-all group flex items-center justify-center shadow-xl hover:scale-105 active:scale-95"
-                title="Open Game"
-              >
-                <ExternalLink className="w-6 h-6 text-white group-hover:text-cyan-300 transition-colors" strokeWidth={2.5} />
-              </a>
-            </div>
             
             {/* Game Iframe */}
             {/* Important: allow full capabilities to the web game inside the iframe */}
@@ -130,11 +173,107 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Story Modal Overlay */}
+      <AnimatePresence>
+        {activeStory && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 outline-none"
+          >
+            {/* Overlay background */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveStory(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+            
+            {/* Modal Content */}
+            <div className="relative w-full max-w-2xl bg-[#111] overflow-hidden rounded-[32px] border border-white/10 shadow-2xl flex flex-col max-h-[90vh]">
+              <button 
+                onClick={() => setActiveStory(null)}
+                className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-3 rounded-full transition-all group flex items-center justify-center shadow-xl hover:scale-105 active:scale-95"
+              >
+                <X className="w-5 h-5 text-white group-hover:text-red-400 transition-colors" strokeWidth={2.5} />
+              </button>
+              
+              {/* Header Image */}
+              <div className="relative w-full aspect-[16/9] md:aspect-[21/9] shrink-0">
+                <img src={activeStory.imageUrl} alt={activeStory.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent" />
+              </div>
+              
+              {/* Story Text Content */}
+              <div className="p-6 md:p-10 overflow-y-auto">
+                <span className="text-xs md:text-sm font-bold text-white/70 tracking-wider uppercase mb-3 block">
+                  {activeStory.tag}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                  {activeStory.title}
+                </h3>
+                <div className="text-base md:text-lg text-white/80 space-y-6 leading-relaxed whitespace-pre-wrap">
+                  {activeStory.description}
+                  
+                  {/* Let's throw in a bit of generated lorem text here so it actually scrolls! */}
+                  <div className="w-full h-px bg-white/10 my-8" />
+                  <p>And so the journey began. We knew from the start that building a seamless experience meant putting the user at the very center of the universe. Every shade of gradient, every corner radius, and every pixel was chosen to tell a distinct story.</p>
+                  <p>As the development cycles progressed, our vision crystallized. The countless iterations of testing lead to breakthroughs that refined our core gameplay loops.</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 // --- SUB-COMPONENTS ---
+
+function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (story: any) => void }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {stories.map((story) => (
+        <button 
+          key={story.id}
+          onClick={() => onStoryClick(story)}
+          className="group relative w-full aspect-[4/5] object-cover overflow-hidden rounded-[32px] bg-[#111] text-left transition-transform duration-300 hover:scale-[1.02] active:scale-95 shadow-xl"
+        >
+          {/* Background Image */}
+          <img 
+            src={story.imageUrl} 
+            alt={story.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+          {/* Gradients for readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+          
+          {/* Content */}
+          <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
+            <span className="text-xs md:text-sm font-bold text-white/70 tracking-wider uppercase mb-3">
+              {story.tag}
+            </span>
+            <h4 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight line-clamp-2">
+              {story.title}
+            </h4>
+            <p className="text-sm md:text-base text-white/80 line-clamp-3">
+              {story.description}
+            </p>
+          </div>
+          
+          {/* Inner border for glass effect */}
+          <div className="absolute inset-0 rounded-[32px] border border-white/10 pointer-events-none" />
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function SectionHeader({ title }: { title: string }) {
   return (
