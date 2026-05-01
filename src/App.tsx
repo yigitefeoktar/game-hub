@@ -18,12 +18,7 @@ const FEATURED_GAME = {
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/100-player-chess.svg', gameUrl: 'https://100playerchess.com' },
-  { id: '100-player-chess-option-1', title: '100 Player Chess Option 1', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com' },
-  { id: '100-player-chess-neon-1', title: '100 Player Chess Neon 1', iconUrl: '/icons/ai-test-100-player-neon/100-player-chess-neon-1.png', gameUrl: 'https://100playerchess.com' },
-  { id: '100-player-chess-neon-2', title: '100 Player Chess Neon 2', iconUrl: '/icons/ai-test-100-player-neon/100-player-chess-neon-2.png', gameUrl: 'https://100playerchess.com' },
-  { id: '100-player-chess-neon-3', title: '100 Player Chess Neon 3', iconUrl: '/icons/ai-test-100-player-neon/100-player-chess-neon-3.png', gameUrl: 'https://100playerchess.com' },
-  { id: '100-player-chess-neon-4', title: '100 Player Chess Neon 4', iconUrl: '/icons/ai-test-100-player-neon/100-player-chess-neon-4.png', gameUrl: 'https://100playerchess.com' },
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/neon-drift.svg', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'neon-drift-ai-icon', title: 'Neon Drift AI Icon', iconUrl: '/icons/ai-test/neon-drift-ai.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'neon-drift-ai-icon-2', title: 'Neon Drift AI Icon 2', iconUrl: '/icons/ai-test-2/neon-drift-ai-2.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
