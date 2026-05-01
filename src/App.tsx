@@ -17,11 +17,7 @@ const FEATURED_GAME = {
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
-  { id: 'war-of-planets-ai-icon', title: 'War of Planets AI Icon', iconUrl: '/icons/ai-test/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app' },
-  { id: 'war-of-planets-ai-icon-2', title: 'War of Planets AI Icon 2', iconUrl: '/icons/ai-test-2/war-of-planets-ai-2.png', gameUrl: 'https://war-of-planets.vercel.app' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/react-chess.svg', gameUrl: 'https://react-chess-sage-two.vercel.app' },
-  { id: 'react-chess-ai-icon', title: 'React Chess AI Icon', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
-  { id: 'react-chess-ai-icon-2', title: 'React Chess AI Icon 2', iconUrl: '/icons/ai-test-2/react-chess-ai-2.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/100-player-chess.svg', gameUrl: 'https://100playerchess.com' },
   { id: '100-player-chess-ai-icon', title: '100 Player Chess AI Icon', iconUrl: '/icons/ai-test/100-player-chess-ai.png', gameUrl: 'https://100playerchess.com' },
   { id: '100-player-chess-ai-icon-2', title: '100 Player Chess AI Icon 2', iconUrl: '/icons/ai-test-2/100-player-chess-ai-2.png', gameUrl: 'https://100playerchess.com' },
