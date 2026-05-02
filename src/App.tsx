@@ -27,6 +27,7 @@ const ALL_GAMES = [
   { id: 'gemini-clash-option-2', title: 'Gemini Clash Option 2', iconUrl: '/icons/ai-test-gemini-clash-village/gemini-clash-option-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
   { id: 'gemini-clash-option-3', title: 'Gemini Clash Option 3', iconUrl: '/icons/ai-test-gemini-clash-village/gemini-clash-option-3.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
   { id: 'gemini-clash-option-4', title: 'Gemini Clash Option 4', iconUrl: '/icons/ai-test-gemini-clash-village/gemini-clash-option-4.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: 'gemini-clash-character-closeup', title: 'Gemini Clash Character Closeup', iconUrl: '/icons/ai-test-gemini-clash-village/gemini-clash-character-closeup.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
 ];
 
 const STORY_CARDS = [
