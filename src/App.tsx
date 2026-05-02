@@ -21,6 +21,8 @@ const ALL_GAMES = [
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
+  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/compute-the-agi-race.svg', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app' },
 ];
 
 const STORY_CARDS = [

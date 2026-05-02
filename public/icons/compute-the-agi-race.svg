@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Compute: The AGI Race icon">
+  <defs>
+    <linearGradient id="bg" x1="12" y1="8" x2="118" y2="122" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101827"/>
+      <stop offset="0.52" stop-color="#18264a"/>
+      <stop offset="1" stop-color="#050713"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="36" y1="30" x2="90" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset="0.48" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#22d3ee" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M16 92c28-2 47-11 62-28 9-10 19-17 34-20" fill="none" stroke="#22d3ee" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M13 103c33-2 56-12 74-31 8-9 17-14 29-16" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="0.75"/>
+  <g filter="url(#glow)">
+    <rect x="37" y="31" width="54" height="54" rx="13" fill="url(#chip)" stroke="#cffafe" stroke-width="3"/>
+    <rect x="49" y="43" width="30" height="30" rx="7" fill="#0f172a" opacity="0.88"/>
+    <path d="M56 64h16M64 56v16" stroke="#67e8f9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g stroke="#93c5fd" stroke-width="4" stroke-linecap="round" opacity="0.9">
+    <path d="M44 24v9M56 20v11M72 20v11M84 24v9"/>
+    <path d="M44 95v9M56 97v11M72 97v11M84 95v9"/>
+    <path d="M24 44h11M20 56h13M20 72h13M24 84h11"/>
+    <path d="M93 44h11M95 56h13M95 72h13M93 84h11"/>
+  </g>
+  <path d="M87 26 108 17l-7 22" fill="#f8fafc" opacity="0.95"/>
+</svg>
