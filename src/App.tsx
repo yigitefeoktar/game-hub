@@ -21,22 +21,6 @@ const ALL_GAMES = [
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/gemini-clash-village.svg', gameUrl: 'https://gemini-clash-village.vercel.app' },
-  { id: 'gemini-clash-village-ai-icon', title: 'Gemini Clash Village AI Icon', iconUrl: '/icons/ai-test/gemini-clash-village-ai.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
-  { id: 'gemini-clash-village-ai-icon-2', title: 'Gemini Clash Village AI Icon 2', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
-  { id: '1', title: 'Solitaire', iconUrl: 'https://picsum.photos/seed/solitaire/200/200', gameUrl: 'https://example.com/game1' },
-  { id: 'solitaire-ai-icon', title: 'Solitaire AI Icon', iconUrl: '/icons/ai-test/solitaire-ai.png', gameUrl: 'https://example.com/game1' },
-  { id: 'solitaire-ai-icon-2', title: 'Solitaire AI Icon 2', iconUrl: '/icons/ai-test-2/solitaire-ai-2.png', gameUrl: 'https://example.com/game1' },
-  { id: '2', title: 'Adventure', iconUrl: 'https://picsum.photos/seed/adventure/200/200', gameUrl: 'https://example.com/game2' },
-  { id: '3', title: 'Duck Pond', iconUrl: 'https://picsum.photos/seed/duck/200/200', gameUrl: 'https://example.com/game3' },
-  { id: '4', title: 'Coffee Shop', iconUrl: 'https://picsum.photos/seed/coffee/200/200', gameUrl: 'https://example.com/game4' },
-  { id: '5', title: 'Racing', iconUrl: 'https://picsum.photos/seed/racing/200/200', gameUrl: 'https://example.com/game5' },
-  { id: '6', title: 'Puzzle', iconUrl: 'https://picsum.photos/seed/puzzle/200/200', gameUrl: 'https://example.com/game6' },
-  { id: '7', title: 'Strategy', iconUrl: 'https://picsum.photos/seed/strategy/200/200', gameUrl: 'https://example.com/game7' },
-  { id: '8', title: 'Neon Run', iconUrl: 'https://picsum.photos/seed/neon/200/200', gameUrl: 'https://example.com/game8' },
-  { id: '9', title: 'Magic Quest', iconUrl: 'https://picsum.photos/seed/quest/200/200', gameUrl: 'https://example.com/game9' },
-  { id: '10', title: 'Farm Life', iconUrl: 'https://picsum.photos/seed/farm/200/200', gameUrl: 'https://example.com/game10' },
-  { id: '11', title: 'Epic RPG', iconUrl: 'https://picsum.photos/seed/rpg/200/200', gameUrl: 'https://example.com/game11' },
-  { id: '12', title: 'Space', iconUrl: 'https://picsum.photos/seed/space/200/200', gameUrl: 'https://example.com/game12' },
 ];
 
 const STORY_CARDS = [
