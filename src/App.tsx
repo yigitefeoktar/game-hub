@@ -22,7 +22,15 @@ const ALL_GAMES = [
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
   { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/compute-the-agi-race.svg', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-1', title: 'Compute Option 1', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-1', title: 'Toy Box Option 1', iconUrl: '/icons/ai-test-toy-box/toy-box-option-1.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-2', title: 'Toy Box Option 2', iconUrl: '/icons/ai-test-toy-box/toy-box-option-2.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-3', title: 'Toy Box Option 3', iconUrl: '/icons/ai-test-toy-box/toy-box-option-3.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-4', title: 'Toy Box Option 4', iconUrl: '/icons/ai-test-toy-box/toy-box-option-4.png', gameUrl: 'https://toy-box-umber.vercel.app' },
 ];
 
 const STORY_CARDS = [
