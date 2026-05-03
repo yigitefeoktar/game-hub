@@ -26,11 +26,19 @@ const ALL_GAMES = [
   { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
   { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
   { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-5', title: 'Compute Option 5', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-5.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-6', title: 'Compute Option 6', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-6.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-7', title: 'Compute Option 7', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-7.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
+  { id: 'compute-the-agi-race-option-8', title: 'Compute Option 8', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-8.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app' },
   { id: 'toy-box-option-1', title: 'Toy Box Option 1', iconUrl: '/icons/ai-test-toy-box/toy-box-option-1.png', gameUrl: 'https://toy-box-umber.vercel.app' },
   { id: 'toy-box-option-2', title: 'Toy Box Option 2', iconUrl: '/icons/ai-test-toy-box/toy-box-option-2.png', gameUrl: 'https://toy-box-umber.vercel.app' },
   { id: 'toy-box-option-3', title: 'Toy Box Option 3', iconUrl: '/icons/ai-test-toy-box/toy-box-option-3.png', gameUrl: 'https://toy-box-umber.vercel.app' },
   { id: 'toy-box-option-4', title: 'Toy Box Option 4', iconUrl: '/icons/ai-test-toy-box/toy-box-option-4.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-5', title: 'Toy Box Option 5', iconUrl: '/icons/ai-test-toy-box/toy-box-option-5.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-6', title: 'Toy Box Option 6', iconUrl: '/icons/ai-test-toy-box/toy-box-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-7', title: 'Toy Box Option 7', iconUrl: '/icons/ai-test-toy-box/toy-box-option-7.png', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'toy-box-option-8', title: 'Toy Box Option 8', iconUrl: '/icons/ai-test-toy-box/toy-box-option-8.png', gameUrl: 'https://toy-box-umber.vercel.app' },
 ];
 
 const STORY_CARDS = [
