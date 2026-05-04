@@ -100,15 +100,6 @@ export default function App() {
               Play
             </button>
 
-            {/* Pagination Dots (Visual only for now) */}
-            <div className="flex gap-2 mt-8 opacity-40">
-              <div className="w-2 h-2 rounded-full bg-white opacity-100"></div>
-              <div className="w-2 h-2 rounded-full bg-white opacity-40"></div>
-              <div className="w-2 h-2 rounded-full bg-white opacity-40"></div>
-              <div className="w-2 h-2 rounded-full bg-white opacity-40"></div>
-              <div className="w-2 h-2 rounded-full bg-white opacity-40"></div>
-              <div className="w-2 h-2 rounded-full bg-white opacity-40"></div>
-            </div>
           </div>
         </section>
 
