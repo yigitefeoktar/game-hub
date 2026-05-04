@@ -58,7 +58,7 @@ const STORY_CARDS = [
 ];
 
 export default function App() {
-  const [activeGame, setActiveGame] = useState<{ id: string; gameUrl: string; title: string } | null>(null);
+  const [activeGame, setActiveGame] = useState<{ id: string; gameUrl: string; title: string; iconUrl: string } | null>(null);
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl: string; tag: string } | null>(null);
 
   // Stop body scroll when a game or story is active
@@ -117,7 +117,7 @@ export default function App() {
 
       </main>
 
-      {/* Fullscreen Game Overlay */}
+      {/* Game Overlay */}
       <AnimatePresence>
         {activeGame && (
           <motion.div
@@ -125,10 +125,10 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="fixed inset-0 z-50 bg-black flex flex-col"
+            className="fixed inset-0 z-50 bg-black md:bg-black/90 md:p-5 flex flex-col md:flex-row md:gap-5"
           >
-            {/* The Floating X Button */}
-            <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
+            {/* Mobile Close Button */}
+            <div className="absolute top-6 left-6 z-50 md:hidden">
               <button 
                 onClick={() => setActiveGame(null)}
                 className="bg-black/50 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-4 rounded-full transition-all group flex items-center justify-center shadow-xl hover:scale-105 active:scale-95"
@@ -137,16 +137,51 @@ export default function App() {
                 <X className="w-6 h-6 text-white group-hover:text-red-400 transition-colors" strokeWidth={2.5} />
               </button>
             </div>
+
+            <aside className="hidden md:flex w-[280px] lg:w-[340px] shrink-0 rounded-[28px] border border-white/10 bg-[#0d0d0f]/95 p-5 lg:p-6 flex-col shadow-2xl">
+              <button 
+                onClick={() => setActiveGame(null)}
+                className="self-start bg-white/10 hover:bg-white/15 border border-white/10 p-3 rounded-full transition-all group flex items-center justify-center hover:scale-105 active:scale-95"
+                title="Close Game"
+              >
+                <X className="w-5 h-5 text-white group-hover:text-red-400 transition-colors" strokeWidth={2.5} />
+              </button>
+
+              <div className="mt-8">
+                <img
+                  src={activeGame.iconUrl}
+                  alt=""
+                  className="w-24 h-24 rounded-[22px] object-cover shadow-xl border border-white/10"
+                />
+                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-white/45">
+                  Now Playing
+                </p>
+                <h2 className="mt-2 text-3xl font-bold tracking-tight text-white leading-tight">
+                  {activeGame.title}
+                </h2>
+              </div>
+
+              <div className="mt-auto space-y-3">
+                <button
+                  onClick={() => setActiveGame(null)}
+                  className="w-full bg-white text-black hover:bg-white/90 font-semibold py-3 px-5 rounded-full transition-colors"
+                >
+                  Back to Hub
+                </button>
+              </div>
+            </aside>
             
             {/* Game Iframe */}
             {/* Important: allow full capabilities to the web game inside the iframe */}
-            <iframe 
-              src={activeGame.gameUrl}
-              className="w-full h-full border-none flex-1 bg-black"
-              title={activeGame.title}
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
-              allow="autoplay; fullscreen; gyroscope; accelerometer; magnetometer; focus-without-user-activation"
-            />
+            <div className="flex-1 min-h-0 bg-black md:rounded-[28px] md:overflow-hidden md:border md:border-white/10 md:shadow-2xl">
+              <iframe 
+                src={activeGame.gameUrl}
+                className="w-full h-full border-none bg-black"
+                title={activeGame.title}
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
+                allow="autoplay; fullscreen; gyroscope; accelerometer; magnetometer; focus-without-user-activation"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
