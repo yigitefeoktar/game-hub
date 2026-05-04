@@ -206,7 +206,7 @@ export default function App() {
             />
             
             {/* Modal Content */}
-            <div className="relative w-full max-w-2xl bg-[#111] overflow-hidden rounded-[32px] border border-white/10 shadow-2xl flex flex-col max-h-[90vh]">
+            <div className="relative w-full max-w-2xl md:max-w-5xl bg-[#111] overflow-hidden rounded-[32px] border border-white/10 shadow-2xl flex flex-col md:flex-row max-h-[90vh] md:h-[78vh]">
               <button 
                 onClick={() => setActiveStory(null)}
                 className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-3 rounded-full transition-all group flex items-center justify-center shadow-xl hover:scale-105 active:scale-95"
@@ -215,13 +215,13 @@ export default function App() {
               </button>
               
               {/* Header Image */}
-              <div className="relative w-full aspect-[16/9] md:aspect-[21/9] shrink-0">
+              <div className="relative w-full aspect-[16/9] md:aspect-auto md:w-[46%] md:h-full shrink-0">
                 <img src={activeStory.imageUrl} alt={activeStory.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-[#111]" />
               </div>
               
               {/* Story Text Content */}
-              <div className="p-6 md:p-10 overflow-y-auto">
+              <div className="p-6 md:p-10 lg:p-12 overflow-y-auto md:flex-1">
                 <span className="text-xs md:text-sm font-bold text-white/70 tracking-wider uppercase mb-3 block">
                   {activeStory.tag}
                 </span>
