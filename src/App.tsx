@@ -219,17 +219,17 @@ function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (s
         <button 
           key={story.id}
           onClick={() => onStoryClick(story)}
-          className="group relative w-full aspect-[4/5] object-cover overflow-hidden rounded-[32px] bg-[#111] text-left transition-transform duration-300 hover:scale-[1.02] active:scale-95 shadow-xl"
+          className="group relative w-full aspect-[4/5] object-cover overflow-hidden rounded-[32px] bg-[#111] text-left transition-shadow duration-300 shadow-xl hover:shadow-2xl active:scale-[0.99]"
         >
           {/* Background Image */}
           <img 
             src={story.imageUrl} 
             alt={story.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             loading="lazy"
           />
           {/* Gradients for readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-95" />
           
           {/* Content */}
           <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
@@ -245,7 +245,7 @@ function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (s
           </div>
           
           {/* Inner border for glass effect */}
-          <div className="absolute inset-0 rounded-[32px] border border-white/10 pointer-events-none" />
+          <div className="absolute inset-0 rounded-[32px] border border-white/10 transition-colors duration-300 group-hover:border-white/20 pointer-events-none" />
         </button>
       ))}
     </div>
