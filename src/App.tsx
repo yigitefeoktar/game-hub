@@ -16,21 +16,21 @@ const FEATURED_GAME = {
 };
 
 const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com' },
-  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app' },
-  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app' },
-  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/compute-the-agi-race.svg', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-1', title: 'Compute Option 1', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-5', title: 'Compute Option 5', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-5.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-6', title: 'Compute Option 6', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-6.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-7', title: 'Compute Option 7', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-7.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'compute-the-agi-race-option-8', title: 'Compute Option 8', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-8.png', gameUrl: 'https://compute-the-agi-race.vercel.app' },
-  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app' },
+  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app', status: 'Playable' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Polishing' },
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Polishing' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Polishing' },
+  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/compute-the-agi-race.svg', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-1', title: 'Compute Option 1', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-5', title: 'Compute Option 5', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-5.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-6', title: 'Compute Option 6', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-6.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-7', title: 'Compute Option 7', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-7.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-8', title: 'Compute Option 8', iconUrl: '/icons/ai-test-compute-the-agi-race/compute-option-8.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
 ];
 
 const STORY_CARDS = [
@@ -262,9 +262,22 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
+function getStatusClass(status: string) {
+  switch (status) {
+    case 'Playable':
+      return 'bg-emerald-400/12 text-emerald-200 border-emerald-300/20';
+    case 'Polishing':
+      return 'bg-amber-400/12 text-amber-200 border-amber-300/20';
+    case 'Early Build':
+      return 'bg-sky-400/12 text-sky-200 border-sky-300/20';
+    default:
+      return 'bg-white/8 text-white/65 border-white/10';
+  }
+}
+
 function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void }) {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-6 md:gap-x-6 md:gap-y-8 pb-6">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-7 md:gap-x-6 md:gap-y-9 pb-6">
       {games.map((game) => (
         <button 
           key={game.id} 
@@ -283,6 +296,11 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-white/10 pointer-events-none" />
           </div>
           <span className="font-medium text-xs md:text-sm line-clamp-2 opacity-90 group-hover:opacity-100 leading-tight">{game.title}</span>
+          {game.status && (
+            <span className={`mt-1 inline-flex w-fit max-w-full items-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
+              {game.status}
+            </span>
+          )}
         </button>
       ))}
     </div>
