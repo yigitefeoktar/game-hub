@@ -21,14 +21,10 @@ const ALL_GAMES = [
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Polishing' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Polishing' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-1', title: 'Compute Option 1', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-5', title: 'Compute Option 5', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-5.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-6', title: 'Compute Option 6', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-6.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-7', title: 'Compute Option 7', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-7.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race-option-8', title: 'Compute Option 8', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-8.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-1', title: 'Compute Text Option 1', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-2', title: 'Compute Text Option 2', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-3', title: 'Compute Text Option 3', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-4', title: 'Compute Text Option 4', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
 ];
 
