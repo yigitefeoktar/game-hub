@@ -25,6 +25,10 @@ const ALL_GAMES = [
   { id: 'compute-the-agi-race-option-2', title: 'Compute Option 2', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-2.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
   { id: 'compute-the-agi-race-option-3', title: 'Compute Option 3', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-3.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
   { id: 'compute-the-agi-race-option-4', title: 'Compute Option 4', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-4.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-5', title: 'Compute Option 5', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-5.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-6', title: 'Compute Option 6', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-6.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-7', title: 'Compute Option 7', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-7.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
+  { id: 'compute-the-agi-race-option-8', title: 'Compute Option 8', iconUrl: '/icons/ai-test-compute-agi-race-2027/compute-2027-option-8.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
 ];
 
