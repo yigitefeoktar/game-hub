@@ -23,6 +23,10 @@ const ALL_GAMES = [
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Early Build' },
   { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/toy-box.svg', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-1', title: 'Toy Box Option 1', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-1.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-2', title: 'Toy Box Option 2', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-2.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-3', title: 'Toy Box Option 3', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-3.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-4', title: 'Toy Box Option 4', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-4.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
 ];
 
 const STORY_CARDS = [
