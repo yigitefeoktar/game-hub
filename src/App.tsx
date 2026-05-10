@@ -27,6 +27,10 @@ const ALL_GAMES = [
   { id: 'toy-box-option-2', title: 'Toy Box Option 2', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-2.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
   { id: 'toy-box-option-3', title: 'Toy Box Option 3', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-3.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
   { id: 'toy-box-option-4', title: 'Toy Box Option 4', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-4.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-5', title: 'Toy Box Option 5', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-5.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-6', title: 'Toy Box Option 6', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-7', title: 'Toy Box Option 7', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-7.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'toy-box-option-8', title: 'Toy Box Option 8', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-8.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
 ];
 
 const STORY_CARDS = [
