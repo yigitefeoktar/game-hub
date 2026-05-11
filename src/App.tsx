@@ -8,7 +8,7 @@ const FEATURED_GAME = {
   id: 'featured',
   title: 'War of Planets',
   subtitle: 'STRATEGY',
-  tag: 'Out Now',
+  tag: 'Live',
   description: 'Command one of four unique factions in a strategic battle for total galactic control!',
   coverUrl: '/assets/war-of-planets.png',
   iconUrl: '/icons/app-icon.svg',
