@@ -78,7 +78,7 @@ export default function App() {
           <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/90 via-black/40 to-transparent w-full md:w-3/4" />
 
           <div className="absolute left-1/2 top-4 md:top-5 z-10 -translate-x-1/2">
-            <div className="rounded-full border border-white/20 bg-white/[0.09] px-4 py-2 text-xs font-medium text-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_12px_36px_rgba(0,0,0,0.34)] backdrop-blur-2xl">
+            <div className="rounded-full border border-white/10 bg-white/20 px-4 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-md md:px-5">
               Made by Yiğit Efe Oktar
             </div>
           </div>
