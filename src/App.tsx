@@ -16,13 +16,13 @@ const FEATURED_GAME = {
 };
 
 const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app', status: 'Playable' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Polishing' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Polishing' },
-  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Polishing' },
-  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Early Build' },
-  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Early Build' },
-  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Prototype' },
+  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Beta' },
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
+  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
+  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Prototype' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
 ];
 
 const STORY_CARDS = [
@@ -256,11 +256,11 @@ function SectionHeader({ title }: { title: string }) {
 
 function getStatusClass(status: string) {
   switch (status) {
-    case 'Playable':
+    case 'Live':
       return 'bg-emerald-400/12 text-emerald-200 border-emerald-300/20';
-    case 'Polishing':
+    case 'Beta':
       return 'bg-amber-400/12 text-amber-200 border-amber-300/20';
-    case 'Early Build':
+    case 'Prototype':
       return 'bg-sky-400/12 text-sky-200 border-sky-300/20';
     default:
       return 'bg-white/8 text-white/65 border-white/10';
