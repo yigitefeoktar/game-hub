@@ -65,6 +65,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6 md:pt-10 space-y-8 md:space-y-12">
+        <div className="flex justify-center md:justify-end">
+          <div className="inline-flex items-center rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-medium text-white/75 shadow-[0_8px_30px_rgba(0,0,0,0.24)] backdrop-blur-xl">
+            Made by Yiğit Efe Oktar
+          </div>
+        </div>
+
         {/* Hero Section */}
         <section className="relative w-full aspect-[4/5] md:aspect-[21/9] rounded-3xl md:rounded-[32px] overflow-hidden group cursor-pointer" onClick={() => setActiveGame(FEATURED_GAME)}>
           {/* Background Image */}
