@@ -11,12 +11,12 @@ const FEATURED_GAME = {
   tag: 'Live',
   description: 'Command one of four unique factions in a strategic battle for total galactic control!',
   coverUrl: '/assets/war-of-planets.png',
-  iconUrl: '/icons/app-icon.svg',
+  iconUrl: '/icons/war-of-planets-ai.png',
   gameUrl: 'https://war-of-planets.vercel.app',
 };
 
 const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/app-icon.svg', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Beta' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
