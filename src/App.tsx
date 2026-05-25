@@ -330,7 +330,7 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
             {/* Subtle inner shadow for 3D effect on icon */}
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-white/10 pointer-events-none" />
           </div>
-          <span className={`block w-full truncate font-medium text-[11px] leading-tight md:text-[13px] ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
+          <span className={`block w-full truncate font-medium text-[11px] leading-tight md:text-sm ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
           {game.status && (
             <span className={`mt-1 inline-flex max-w-full items-center justify-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
               {game.status}
