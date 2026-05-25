@@ -1,6 +1,6 @@
 {
-  "name": "Remix: Game Hub",
-  "description": "A central hub to play your web-based games featuring a UI inspired by the Apple Games app. Supports full-screen play and smooth transitions.",
+  "name": "Vibe Studios",
+  "description": "A web game hub by Yigit Efe Oktar, featuring playable browser games and upcoming experiments.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
