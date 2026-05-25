@@ -86,7 +86,7 @@ export default function App() {
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6 md:pt-10 space-y-8 md:space-y-12">
         {/* Hero Section */}
-        <section className="relative w-full aspect-[4/5] md:aspect-[21/9] rounded-3xl md:rounded-[32px] overflow-hidden group cursor-pointer" onClick={() => setActiveGame(FEATURED_GAME)}>
+        <section className="relative -mx-4 w-[calc(100%+2rem)] aspect-[4/5] overflow-hidden rounded-none group cursor-pointer md:mx-0 md:w-full md:aspect-[21/9] md:rounded-[32px]" onClick={() => setActiveGame(FEATURED_GAME)}>
           {/* Background Image */}
           <img 
             src={FEATURED_GAME.coverUrl} 
