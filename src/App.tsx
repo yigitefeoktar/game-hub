@@ -21,7 +21,8 @@ const ALL_GAMES = [
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
-  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Prototype' },
+  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
+  { id: 'mahine-craft', title: 'Mahine Craft', iconUrl: '/icons/mahine-craft.png', status: 'Coming Soon' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://ricochet-arena.vercel.app', status: 'Beta' },
 ];
@@ -269,6 +270,8 @@ function getStatusClass(status: string) {
       return 'bg-amber-400/12 text-amber-200 border-amber-300/20';
     case 'Prototype':
       return 'bg-sky-400/12 text-sky-200 border-sky-300/20';
+    case 'Coming Soon':
+      return 'bg-white/10 text-white/70 border-white/15';
     default:
       return 'bg-white/8 text-white/65 border-white/10';
   }
@@ -277,31 +280,47 @@ function getStatusClass(status: string) {
 function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void }) {
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-7 md:gap-x-6 md:gap-y-9 pb-6">
-      {games.map((game) => (
+      {games.map((game) => {
+        const isComingSoon = game.status === 'Coming Soon';
+
+        return (
         <button 
           key={game.id} 
-          onClick={() => onPlay(game)}
-          className="flex flex-col text-left group w-full"
+          onClick={() => {
+            if (!isComingSoon && game.gameUrl) {
+              onPlay(game);
+            }
+          }}
+          aria-disabled={isComingSoon}
+          className={`flex flex-col text-left group w-full ${isComingSoon ? 'cursor-default' : ''}`}
         >
           {/* Squircle App Icon equivalent */}
-          <div className="w-full aspect-square relative rounded-2xl md:rounded-3xl overflow-hidden mb-2 bg-[#222] shadow-lg transition-transform duration-300 group-hover:scale-[1.03] active:scale-95">
+          <div className={`w-full aspect-square relative rounded-2xl md:rounded-3xl overflow-hidden mb-2 bg-[#222] shadow-lg transition-transform duration-300 ${isComingSoon ? '' : 'group-hover:scale-[1.03] active:scale-95'}`}>
             <img 
               src={game.iconUrl} 
               alt={game.title} 
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover ${isComingSoon ? 'opacity-75 saturate-[0.85]' : ''}`}
               loading="lazy"
             />
+            {isComingSoon && (
+              <div className="absolute inset-0 flex items-end justify-center bg-black/45 px-2 pb-3 backdrop-blur-[1px]">
+                <span className="rounded-full border border-white/15 bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white/80 shadow-lg">
+                  Soon
+                </span>
+              </div>
+            )}
             {/* Subtle inner shadow for 3D effect on icon */}
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-white/10 pointer-events-none" />
           </div>
-          <span className="font-medium text-xs md:text-sm line-clamp-2 opacity-90 group-hover:opacity-100 leading-tight">{game.title}</span>
+          <span className={`font-medium text-xs md:text-sm line-clamp-2 leading-tight ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
           {game.status && (
             <span className={`mt-1 inline-flex w-fit max-w-full items-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
               {game.status}
             </span>
           )}
         </button>
-      ))}
+        );
+      })}
     </div>
   );
 }
