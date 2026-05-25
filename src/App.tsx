@@ -23,6 +23,7 @@ const ALL_GAMES = [
   { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
   { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', gameUrl: 'https://compute-the-agi-race.vercel.app', status: 'Prototype' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
+  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://ricochet-arena.vercel.app', status: 'Beta' },
 ];
 
 const STORY_CARDS = [
