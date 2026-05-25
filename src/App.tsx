@@ -28,6 +28,23 @@ const ALL_GAMES = [
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://ricochet-arena.vercel.app', status: 'Beta' },
 ];
 
+const STATUS_ORDER: Record<string, number> = {
+  Live: 0,
+  Beta: 1,
+  Prototype: 2,
+  'Coming Soon': 3,
+};
+
+const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
+  const statusDifference = (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99);
+
+  if (statusDifference !== 0) {
+    return statusDifference;
+  }
+
+  return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
+});
+
 const STORY_CARDS = [
   {
     id: 's1',
@@ -107,7 +124,7 @@ export default function App() {
         {/* All Games Grid */}
         <section className="px-6 md:px-0 pb-12">
           <SectionHeader title="All Games" />
-          <GameGrid games={ALL_GAMES} onPlay={(game) => setActiveGame(game)} />
+          <GameGrid games={SORTED_GAMES} onPlay={(game) => setActiveGame(game)} />
         </section>
 
         {/* Stories / Editorial Section */}
