@@ -20,8 +20,8 @@ const ALL_GAMES = [
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Beta' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
-  { id: 'gemini-clash-village', title: 'Gemini Clash Village', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
-  { id: 'compute-the-agi-race', title: 'Compute: The AGI Race', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
+  { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
+  { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
@@ -330,7 +330,7 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
             {/* Subtle inner shadow for 3D effect on icon */}
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-white/10 pointer-events-none" />
           </div>
-          <span className={`block w-full truncate font-medium text-xs md:text-sm leading-tight ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
+          <span className={`block w-full truncate font-medium text-[11px] leading-tight md:text-[13px] ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
           {game.status && (
             <span className={`mt-1 inline-flex max-w-full items-center justify-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
               {game.status}
