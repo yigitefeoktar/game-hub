@@ -127,6 +127,124 @@ This system can help us build games much faster, reducing development time from 
 
 It also changes what one person can realistically attempt. Instead of thinking like a solo developer who has to manually do every step, I can think more like a small studio: direction, design, coding, review, testing, and planning can all happen in parallel with AI agents.`;
 
+const ONE_PERSON_AI_PRODUCTIVITY = `A system for using your energy, AI agents, and Notion better.
+
+This is not general productivity advice. It is a system for people who are students, builders, and AI users at the same time.
+
+Most productivity advice is made for normal work. But if you are building games, websites, or software with AI agents, the rules are a bit different. You are not just managing your own time. You are also managing what the AI should do, when it should do it, and when you need to step in.
+
+These are the main points that actually apply to people like us.
+
+The basic principles
+1. Maximize leverage
+
+You cannot beat everyone only by working harder, or by relying on raw skill and intelligence.
+
+You need to maximize leverage. You need to find ways to get as much useful work done while wasting as little effort as possible. For an AI builder, that means using AI agents, Notion, templates, batching, planning, and reusable systems instead of trying to manually do everything yourself.
+
+The goal is not to be lazy. The goal is to stop wasting energy on work that can be done by a system or an AI.
+
+2. Systems beat willpower
+
+You need to work harder, but willpower is limited and unreliable.
+
+If your plan depends on feeling motivated every day, it will break. You need systems in place to get things done without relying on motivation.
+
+That means planning the day before, keeping your tasks somewhere outside your brain, using weekly reviews, and letting AI help you decide what matters.
+
+3. Energy matters more than time
+
+Time is important, but energy is even more important.
+
+One hour of high-energy work is not the same as one hour when you are tired and distracted. Your best energy should go to the work that actually needs human judgment: studying, planning, designing, writing important documents, making decisions, and checking AI-built work.
+
+Low-energy time can be used for easier tasks, organizing, or letting AI agents continue building.
+
+Specific systems you can build
+1. Batch related work
+
+You can batch work that is related to each other.
+
+Some tasks can be done in parallel, and some tasks cannot. The important thing is knowing the difference.
+
+A lot of AI work follows the 10-80-10 rule. The first 10 percent and the last 10 percent need your attention. At the beginning, you decide what the project is, what “done” looks like, and what the AI should build. At the end, you check the result, test it, and decide what needs to change.
+
+But the middle 80 percent is different. That is where the AI is building, editing, fixing, and implementing. That part can often happen in parallel with other tasks.
+
+So you can have two types of days:
+
+Multitasking days: days where multiple AI tasks are running. You can let one AI build a game, another AI fix a website problem, and another AI work on a document. You are not doing all the work yourself. You are checking, redirecting, and giving the next instruction when needed.
+
+Focus days: days where you do the parts that need your actual thinking. Writing the first GDD, making important design decisions, playtesting a game, deciding what feels wrong, or choosing what to do next.
+
+This also means the 10-80-10 rule is not always a straight line. Sometimes you do the first 10 percent, let AI do the middle 80 percent, then check the final 10 percent and realize the game needs redesigning. Then that redesign becomes another AI task that can go back into a multitasking day.
+
+So the point is not “multitask everything.” The point is to batch the AI-building parts together, and give full focus to the human-decision parts.
+
+2. Use the two-minute rule
+
+If something takes two minutes, just do it.
+
+If it is a longer task, put it into Notion and schedule it. It should not stay in your brain taking up bandwidth.
+
+Notion is basically the place where you keep your tasks, project notes, ideas, deadlines, weekly plans, and anything you do not want to remember manually. The point is to get tasks out of your head and into a system you trust.
+
+3. Honor your to-do list
+
+Plan each day the night before.
+
+During the day, focus on the tasks you planned. If a brand-new thing comes to your mind and it takes more than two minutes, do not immediately switch to it. Put it into your to-do list and schedule it for another day.
+
+Random ideas can feel productive, but they can also destroy the actual plan. So you should honor your to-do list.
+
+4. Start with Notion, not YouTube
+
+Do not start the day with YouTube videos.
+
+Start the day with Notion. Look at your to-do list and write down your thoughts. This makes the day start with direction instead of distraction.
+
+YouTube can be useful for learning, but it should not control your attention first thing in the morning.
+
+5. Use the 10-80-10 rule
+
+For AI-built projects, you should be part of the project mostly at the beginning and the end.
+
+The first 10 percent is where you define the project. You write the GDD, or game design document. You decide the core idea, what “done” looks like, the main features, the constraints, and what the AI should build.
+
+The middle 80 percent should be done mostly by AI. This is where the AI writes code, makes changes, fixes bugs, and builds step by step.
+
+The last 10 percent is where you come back in heavily. You test, judge, polish, and decide what needs to change.
+
+The human should not disappear. But the human also should not manually do every middle step. The strongest use of AI is to put your attention where it matters most: direction at the beginning and judgment at the end.
+
+6. Use your DMN smartly
+
+Use your DMN smartly.
+
+DMN means “default mode network.” In simple words, it is the part of your brain that keeps connecting ideas in the background when you are not directly focusing on a task.
+
+That is why showers, walks, and quiet moments can be useful. If you learn something important and then immediately open YouTube or scroll, you do not give your brain space to think about what you just learned.
+
+A better system is to learn something, then take a shower, go on a walk, or do something quiet. Some ideas need empty space to connect.
+
+7. Make progress easy to track
+
+Make progress in your projects easy to track.
+
+At the end of every week, check your progress. Look at what moved forward, what got stuck, and what needs to change next week.
+
+If you only think day by day, you can feel busy without actually building anything meaningful. Weekly review forces you to think on a larger time scale.
+
+Final idea
+
+The point of this system is not to become a productivity robot.
+
+The point is to make sure important work keeps moving even when motivation is low, school is busy, or there are too many ideas at once.
+
+Use your best energy for the work only you can do.
+
+Use AI and systems for everything else.`;
+
 const STORY_SECTION_HEADINGS = new Set([
   'Why I use Codex',
   'Why AI agents matter',
@@ -135,6 +253,17 @@ const STORY_SECTION_HEADINGS = new Set([
   'The AI CEO',
   'The 10-80-10 rule',
   'Why this matters',
+  'The basic principles\n1. Maximize leverage',
+  '2. Systems beat willpower',
+  '3. Energy matters more than time',
+  'Specific systems you can build\n1. Batch related work',
+  '2. Use the two-minute rule',
+  '3. Honor your to-do list',
+  '4. Start with Notion, not YouTube',
+  '5. Use the 10-80-10 rule',
+  '6. Use your DMN smartly',
+  '7. Make progress easy to track',
+  'Final idea',
 ]);
 
 const STORY_CARDS = [
@@ -154,9 +283,9 @@ const STORY_CARDS = [
   },
   {
     id: 's3',
-    tag: 'UPCOMING',
-    title: 'The 2026 Roadmap',
-    description: 'We are just getting started. Over the next few months, we will be rolling out three new puzzle games, a retro racing arcade, and maybe even a few surprises. Check out our timeline.',
+    tag: 'PRODUCTIVITY',
+    title: 'Productivity for a One-Person AI Company',
+    description: ONE_PERSON_AI_PRODUCTIVITY,
     imageUrl: 'https://picsum.photos/seed/roadmap2/800/1000',
   }
 ];
@@ -326,11 +455,18 @@ function renderStoryDescription(description: string) {
     }
 
     if (STORY_SECTION_HEADINGS.has(text)) {
+      const [sectionLabel, sectionHeading] = text.split('\n');
+
       return (
         <div key={`${text}-${index}`} className="pt-7">
           <div className="mb-5 h-px w-full bg-white/10" />
+          {sectionHeading && (
+            <span className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-white/45">
+              {sectionLabel}
+            </span>
+          )}
           <h4 className="text-lg font-semibold tracking-tight text-white md:text-xl">
-            {text}
+            {sectionHeading ?? sectionLabel}
           </h4>
         </div>
       );
