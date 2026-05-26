@@ -45,12 +45,58 @@ const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
   return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
 });
 
+const AI_TOOLS_RECOMMENDATION = `The tools I started with, what I use now, and what I would recommend depending on your budget.
+
+This is not a complete ranking of every AI tool. It is the path I would recommend based on what I actually used to build games and the Game Hub.
+
+It is important to use the right tools in the right way. I think of it like hiring the right employee for the job. Some tools are better for starting quickly, some are better for serious projects, and some are better if you do not want to deal with technical things.
+
+My recommendation is simple: start with Google AI Studio for free, move to Codex if you get more serious, and use Base44 only if you are not technical and have a higher budget.
+
+The easiest way to start vibe coding today is to go to Google AI Studio and build a simple app there for free. That was how I started, and it is how I made most of my early games.
+
+The Gemini model they have right now is not as capable as the best models from Anthropic and OpenAI, but Google AI Studio makes up for that in other ways. It is easy to use, it works in the browser, you can start working on one device and continue on another device, and the free limits are pretty good. It can even do more advanced things like setting up databases and auth. You could theoretically build complex multiplayer games with it too, although serious multiplayer still gets difficult quickly.
+
+Tools like OpenAI Codex and Claude Code are different. They are more serious coding tools. They run on your computer, so they can control files, run commands, test your app, and connect to other software through things like MCP plugins or skills. You can think of those like extra tools the AI is allowed to use.
+
+The reason these tools matter is that they are not just chatbots. They can work inside real projects, use tools, run commands, and sometimes support multiple AI agents working on the same codebase. I personally recommend the desktop apps instead of the CLI versions because they are much easier to use.
+
+Why I use Codex
+
+Out of Codex and Claude Code, I use Codex because, for my workflow, it is just better. It has an in-app browser that the AI can use and that I can also see. So if I am making a web app, I can preview it right there, and the AI can also test it.
+
+I also like the Vercel plugin in Codex because you can just tell the AI to deploy the app, and it gives you a public URL you can share with people. That simplicity matters a lot.
+
+One downside is that Codex can feel heavy on computers with less RAM, especially if you are running the app, a local dev server, browser preview, and multiple tools at the same time. So if your computer is weaker, Google AI Studio or a cloud/web-based tool may feel smoother.
+
+Claude Code can do many similar things, and some people may prefer it. I still prefer Codex because its browser preview and Vercel workflow feel smoother for the kind of web apps and games I build.
+
+At the time of writing, the serious individual plans are around 20 dollars a month, although Codex access can depend on your ChatGPT plan and region. I think it is worth it, especially because the same subscription also gives you access to the normal chat apps like ChatGPT or Claude AI.
+
+Why AI agents matter
+
+From my perspective, most people do not realize what they are missing until they seriously start using an AI agent in their daily lives. AI models like Claude Opus and GPT reasoning models are significantly smarter than the free versions, and when they are used inside tools like Claude Code and Codex, they can help with almost any work you do on a computer.
+
+That is why I do not think AI agents are only for coding. They are closer to general computer-work assistants than simple code generators. Everyone pays for internet or cellular service, right? I think AI is slowly becoming something like that.
+
+Google also has a desktop app called Antigravity, which is marketed as an IDE for the age of AI. I tried it, but I did not get that much value from it. You need to approve too many things the AI does, and after a while that gets annoying. Also, in my experience, Gemini models are still not as strong as the best models from OpenAI and Anthropic for serious coding work.
+
+What about Base44 and Lovable?
+
+There are also platforms like Base44 and Lovable. They combine smart AI models with the simple web app feeling of Google AI Studio. These can be really good if you are not technical and you want the easiest possible experience.
+
+I think the best one is Base44, but to get real value out of it, you need to pay around 40 dollars a month. That is a lot if you are doing vibe coding as a hobby.
+
+So my final recommendation is: use Google AI Studio to start for free, use Codex if you get more serious, and use Base44 if you are not technical and have a higher budget.
+
+AI tools change quickly, so some features and prices may be different by the time you read this.`;
+
 const STORY_CARDS = [
   {
     id: 's1',
-    tag: 'THE STUDIO',
-    title: 'Why We Build Games',
-    description: 'We believe games should be instantly accessible. No downloads, no waiting. Just pure, unadulterated fun crafted with love and passion. Here is a look into our philosophy and why we started this journey.',
+    tag: 'VIBE CODING',
+    title: 'What AI Tools I Recommend',
+    description: AI_TOOLS_RECOMMENDATION,
     imageUrl: 'https://picsum.photos/seed/studio/800/1000',
   },
   {
@@ -213,11 +259,6 @@ export default function App() {
                 </h3>
                 <div className="text-base md:text-lg text-white/80 space-y-6 leading-relaxed whitespace-pre-wrap">
                   {activeStory.description}
-                  
-                  {/* Let's throw in a bit of generated lorem text here so it actually scrolls! */}
-                  <div className="w-full h-px bg-white/10 my-8" />
-                  <p>And so the journey began. We knew from the start that building a seamless experience meant putting the user at the very center of the universe. Every shade of gradient, every corner radius, and every pixel was chosen to tell a distinct story.</p>
-                  <p>As the development cycles progressed, our vision crystallized. The countless iterations of testing lead to breakthroughs that refined our core gameplay loops.</p>
                 </div>
               </div>
             </div>
