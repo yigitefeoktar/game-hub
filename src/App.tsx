@@ -91,6 +91,12 @@ So my final recommendation is: use Google AI Studio to start for free, use Codex
 
 AI tools change quickly, so some features and prices may be different by the time you read this.`;
 
+const STORY_SECTION_HEADINGS = new Set([
+  'Why I use Codex',
+  'Why AI agents matter',
+  'What about Base44 and Lovable?',
+]);
+
 const STORY_CARDS = [
   {
     id: 's1',
@@ -257,8 +263,8 @@ export default function App() {
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
                   {activeStory.title}
                 </h3>
-                <div className="text-base md:text-lg text-white/80 space-y-6 leading-relaxed whitespace-pre-wrap">
-                  {activeStory.description}
+                <div className="space-y-5 text-[15px] leading-7 text-white/80 md:text-base md:leading-8">
+                  {renderStoryDescription(activeStory.description)}
                 </div>
               </div>
             </div>
@@ -270,6 +276,36 @@ export default function App() {
 }
 
 // --- SUB-COMPONENTS ---
+
+function renderStoryDescription(description: string) {
+  return description.split('\n\n').map((block, index) => {
+    const text = block.trim();
+
+    if (!text) {
+      return null;
+    }
+
+    if (STORY_SECTION_HEADINGS.has(text)) {
+      return (
+        <div key={`${text}-${index}`} className="pt-7">
+          <div className="mb-5 h-px w-full bg-white/10" />
+          <h4 className="text-lg font-semibold tracking-tight text-white md:text-xl">
+            {text}
+          </h4>
+        </div>
+      );
+    }
+
+    return (
+      <p
+        key={`${text.slice(0, 24)}-${index}`}
+        className={index === 0 ? 'text-base font-medium leading-7 text-white/90 md:text-lg md:leading-8' : undefined}
+      >
+        {text}
+      </p>
+    );
+  });
+}
 
 function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (story: any) => void }) {
   return (
