@@ -91,10 +91,50 @@ So my final recommendation is: use Google AI Studio to start for free, use Codex
 
 AI tools change quickly, so some features and prices may be different by the time you read this.`;
 
+const ONE_PERSON_AI_COMPANY = `Our workflow for using AI agents like a small team.
+
+We are effectively a one-person company powered by AI. Every line of code in anything we have deployed is vibe coded, including all the games and the Game Hub itself.
+
+The point is not just that we use AI sometimes. The point is that the whole workflow is built around AI agents doing real work.
+
+Separate AIs for separate jobs
+
+In our larger games, we do not just use one AI chat for everything. We usually have a designer AI alongside the AI that actually writes the code.
+
+This helps solve the context rot problem. The programmer AI has the code changes in its context window, and the designer AI has everything about the game mechanics in its context window. In this system, those two things do not get mixed up. This makes critical design decisions much easier.
+
+The AI CEO
+
+We also use an AI CEO to manage time and direction. Every week, we have a meeting to decide what to focus on next week. It gives me around three major tasks, and I decide when to do each of them during the week.
+
+Having an AI CEO helps me get more done over the course of an entire month, not just one day. It also helps me think on a larger time scale about what kind of things I should build in the future.
+
+The 10-80-10 rule
+
+I am also switching to a more structured way of building games. I am using the 10-80-10 rule.
+
+The idea is that I should do the first 10 percent of a project and the last 10 percent of the project. The middle 80 percent should be done mostly by AI.
+
+In the first 10 percent, I sit down with the designer AI and write a GDD, or game design document. This is where the core idea, rules, mechanics, goals, and constraints are decided. After that, the coding AI can build the game step by step.
+
+During the middle 80 percent, I can do other work while the AI builds. I might be planning another game, writing website content, testing previous projects, or just watching the build process and stepping in when needed. This is the real power of AI agents: they let one person run more than one stream of work at the same time.
+
+Then, in the final 10 percent, I come back in heavily. I do extensive playtesting, look for what feels wrong, decide what needs to change, and push the game closer to something worth publishing.
+
+Why this matters
+
+This system can help us build games much faster, reducing development time from weeks to days, or maybe even hours for simple games.
+
+It also changes what one person can realistically attempt. Instead of thinking like a solo developer who has to manually do every step, I can think more like a small studio: direction, design, coding, review, testing, and planning can all happen in parallel with AI agents.`;
+
 const STORY_SECTION_HEADINGS = new Set([
   'Why I use Codex',
   'Why AI agents matter',
   'What about Base44 and Lovable?',
+  'Separate AIs for separate jobs',
+  'The AI CEO',
+  'The 10-80-10 rule',
+  'Why this matters',
 ]);
 
 const STORY_CARDS = [
@@ -107,9 +147,9 @@ const STORY_CARDS = [
   },
   {
     id: 's2',
-    tag: 'DEVELOPER DIARY',
-    title: 'Designing War of Planets',
-    description: 'Creating a balanced sci-fi strategy game meant balancing hundreds of variables across four unique factions. Dive into our design notebook to see how we brought this galaxy to life.',
+    tag: 'WORKFLOW',
+    title: 'How We Build Games',
+    description: ONE_PERSON_AI_COMPANY,
     imageUrl: '/assets/war-of-planets-promo.png',
   },
   {
