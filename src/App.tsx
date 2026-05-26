@@ -272,21 +272,21 @@ const STORY_CARDS = [
     tag: 'VIBE CODING',
     title: 'What AI Tools I Recommend',
     description: AI_TOOLS_RECOMMENDATION,
-    imageUrl: 'https://picsum.photos/seed/studio/800/1000',
+    imageUrl: '/assets/story-cards/what-ai-tools-cover.png',
   },
   {
     id: 's2',
     tag: 'WORKFLOW',
     title: 'How We Build Games',
     description: ONE_PERSON_AI_COMPANY,
-    imageUrl: '/assets/war-of-planets-promo.png',
+    imageUrl: '/assets/story-cards/how-we-build-games-cover.png',
   },
   {
     id: 's3',
     tag: 'PRODUCTIVITY',
     title: 'Productivity for a One-Person AI Company',
     description: ONE_PERSON_AI_PRODUCTIVITY,
-    imageUrl: 'https://picsum.photos/seed/roadmap2/800/1000',
+    imageUrl: '/assets/story-cards/productivity-cover.png',
   }
 ];
 
