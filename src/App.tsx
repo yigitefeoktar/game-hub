@@ -319,7 +319,7 @@ This was also the first game where I used the 10-80-10 rule. I wrote a game desi
 The full timeline was around a week, which made it the shortest timeline for a relatively complex game I had ever made.
 
 One thing that was really hard was making it fun on mobile. Keyboard and mouse controls feel much more natural for this game, so I recommend trying it on desktop if you only played it on mobile.`,
-    placeholderClass: 'from-fuchsia-500/45 via-rose-300/20 to-black',
+    imageUrl: '/assets/ricochet-arena-card.png',
   },
   {
     id: 'behind-war-of-planets',
