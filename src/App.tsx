@@ -341,14 +341,32 @@ export default function App() {
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
 
-  // Stop body scroll when a game, story, or creator popup is active
+  // Stop body scroll when a fullscreen game or story modal is active
   React.useEffect(() => {
-    if (activeGame || activeStory || isCreatorOpen) {
+    if (activeGame || activeStory) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [activeGame, activeStory, isCreatorOpen]);
+  }, [activeGame, activeStory]);
+
+  React.useEffect(() => {
+    if (!isCreatorOpen) {
+      return;
+    }
+
+    const closeCreatorPopup = () => setIsCreatorOpen(false);
+
+    window.addEventListener('scroll', closeCreatorPopup, { passive: true });
+    window.addEventListener('wheel', closeCreatorPopup, { passive: true });
+    window.addEventListener('touchmove', closeCreatorPopup, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', closeCreatorPopup);
+      window.removeEventListener('wheel', closeCreatorPopup);
+      window.removeEventListener('touchmove', closeCreatorPopup);
+    };
+  }, [isCreatorOpen]);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
@@ -366,16 +384,24 @@ export default function App() {
           <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/90 via-black/40 to-transparent w-full md:w-3/4" />
 
           <div className="absolute left-1/2 top-4 md:top-5 z-10 -translate-x-1/2">
-            <button
+            <AnimatePresence initial={false}>
+              {!isCreatorOpen && (
+                <motion.button
+              layoutId="creator-about-surface"
               type="button"
               onClick={(event) => {
                 event.stopPropagation();
                 setIsCreatorOpen(true);
               }}
-              className="rounded-full border border-white/10 bg-white/20 px-4 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-md transition-all hover:bg-white/30 active:scale-95 md:px-5"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
+              className="rounded-full border border-white/10 bg-white/20 px-4 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-md transition-colors hover:bg-white/30 active:scale-95 md:px-5"
             >
               Made by Yiğit Efe Oktar
-            </button>
+                </motion.button>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Hero Content */}
@@ -514,40 +540,29 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-            className="fixed inset-0 z-[60] flex items-start justify-center px-4 pt-20 md:pt-24"
+            transition={{ duration: 0.16 }}
+            className="fixed inset-0 z-[60]"
             onClick={() => setIsCreatorOpen(false)}
           >
             <motion.div
+              layoutId="creator-about-surface"
               role="dialog"
               aria-modal="true"
-              aria-labelledby="creator-title"
-              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              aria-labelledby="creator-kicker"
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12, scale: 0.98 }}
-              transition={{ type: "spring", bounce: 0, duration: 0.28 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
               onClick={(event) => event.stopPropagation()}
-              className="relative w-full max-w-lg rounded-[28px] border border-white/15 bg-white/[0.12] p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-2xl md:p-7"
+              className="absolute left-1/2 top-4 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-[28px] border border-white/15 bg-white/[0.12] p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-2xl md:top-[60px] md:p-7"
             >
-              <button
-                type="button"
-                onClick={() => setIsCreatorOpen(false)}
-                className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white shadow-lg backdrop-blur-xl transition-all hover:bg-black/40 active:scale-95"
-                aria-label="Close creator popup"
-              >
-                <X className="h-5 w-5" strokeWidth={2.5} />
-              </button>
-
-              <div className="pr-10">
-                <span className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
+              <div>
+                <span id="creator-kicker" className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
                   About the Creator
                 </span>
-                <h3 id="creator-title" className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  Yiğit Efe
-                </h3>
               </div>
 
-              <div className="mt-5 space-y-4 text-sm leading-7 text-white/85 md:text-base md:leading-8">
+              <div className="space-y-4 text-sm leading-7 text-white/85 md:text-base md:leading-8">
                 <p>
                   My name is Yiğit Efe. I am a high school student from Türkiye, and I have been seriously vibe coding since January 2026. I had tried vibe coding before that, but January was when AI models became good enough for my workflow to build full small games with them.
                 </p>
