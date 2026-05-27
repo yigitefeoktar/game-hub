@@ -290,9 +290,55 @@ const STORY_CARDS = [
   }
 ];
 
+const GAME_NOTE_CARDS = [
+  {
+    id: 'behind-100-player-chess',
+    tag: 'PROTOTYPE LESSONS',
+    title: '100 Player Chess',
+    description: `This is an example of how not to build a game.
+
+It was the first game of this scale I had ever made, and I fell into feature creep. Because of that, it took many weeks just to make a prototype. As I said, this is still only a prototype. I want to make the full version when I have more time.
+
+I also think the game does not fully work in its current fast-paced arcade format. For the future version, I want to make it slower and more strategic. Instead of controlling individual pieces all the time, you would control large armies to capture mines and factories.
+
+The maps would be more interesting, and the game would have much more tactical depth while still keeping the core rules of chess. I do not want to fully turn it into something like StarCraft or Age of Empires. The idea is to keep individual piece management in the early game, then add army movement and new mechanics for the endgame.`,
+    placeholderClass: 'from-sky-500/45 via-cyan-300/20 to-black',
+  },
+  {
+    id: 'behind-ricochet-arena',
+    tag: 'MECHANIC STUDY',
+    title: 'Ricochet Arena',
+    description: `This game came from a single thought:
+
+What if we made a shooter game where the bullets bounced forever and never disappeared?
+
+That one idea turned into the whole game. I thought it could create a chaotic and fun endgame, and it actually worked really well. Making fun endgames is usually hard when you are starting game development, but this mechanic naturally creates one.
+
+This was also the first game where I used the 10-80-10 rule. I wrote a game design document at the beginning and stayed loyal to it during the whole process. That stopped me from adding too many mechanics and helped me finish the whole game with less than one full work day of effort.
+
+The full timeline was around a week, which made it the shortest timeline for a relatively complex game I had ever made.
+
+One thing that was really hard was making it fun on mobile. Keyboard and mouse controls feel much more natural for this game, so I recommend trying it on desktop if you only played it on mobile.`,
+    placeholderClass: 'from-fuchsia-500/45 via-rose-300/20 to-black',
+  },
+  {
+    id: 'behind-war-of-planets',
+    tag: 'PIVOT NOTES',
+    title: 'War of Planets',
+    description: `When I started building this game, I had a completely different idea. Its name was going to be War of Pixels. It was supposed to be a game where tiny dots fought over a dynamic front line.
+
+But during development, I pivoted and turned it into a space game instead.
+
+This game is a good example of how fun games do not always need complex mechanics. You do not need five different ship types and a huge tech tree to make something enjoyable. Sometimes a simple core loop is enough.
+
+One thing I would change is that I would add more original mechanics, like planets moving around, to make the game feel more distinct. Right now, some of its mechanics are a bit close to State.io.`,
+    imageUrl: '/assets/war-of-planets-promo.png',
+  }
+];
+
 export default function App() {
   const [activeGame, setActiveGame] = useState<{ id: string; gameUrl: string; title: string } | null>(null);
-  const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl: string; tag: string } | null>(null);
+  const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
 
   // Stop body scroll when a game, story, or creator popup is active
@@ -356,9 +402,15 @@ export default function App() {
           <GameGrid games={SORTED_GAMES} onPlay={(game) => setActiveGame(game)} />
         </section>
 
+        {/* Behind the Games Section */}
+        <section className="px-6 md:px-0 pb-4">
+          <SectionHeader title="Behind the Games" />
+          <StoryGrid stories={GAME_NOTE_CARDS} onStoryClick={setActiveStory} />
+        </section>
+
         {/* Stories / Editorial Section */}
         <section className="px-6 md:px-0 pb-24">
-          <SectionHeader title="Behind the Games" />
+          <SectionHeader title="AI Builder Notes" />
           <StoryGrid stories={STORY_CARDS} onStoryClick={setActiveStory} />
         </section>
 
@@ -428,7 +480,13 @@ export default function App() {
               
               {/* Header Image */}
               <div className="relative w-full aspect-[16/9] md:aspect-auto md:w-[46%] md:h-full shrink-0">
-                <img src={activeStory.imageUrl} alt={activeStory.title} className="w-full h-full object-cover" />
+                {activeStory.imageUrl ? (
+                  <img src={activeStory.imageUrl} alt={activeStory.title} className="w-full h-full object-cover" />
+                ) : (
+                  <div className={`h-full w-full bg-gradient-to-br ${activeStory.placeholderClass ?? 'from-white/20 via-white/5 to-black'}`}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.28),transparent_26%),radial-gradient(circle_at_76%_72%,rgba(255,255,255,0.18),transparent_28%)]" />
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-[#111]" />
               </div>
               
@@ -557,12 +615,19 @@ function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (s
           className="group relative w-full aspect-[4/5] object-cover overflow-hidden rounded-[32px] bg-[#111] text-left transition-shadow duration-300 shadow-xl hover:shadow-2xl active:scale-[0.99]"
         >
           {/* Background Image */}
-          <img 
-            src={story.imageUrl} 
-            alt={story.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-            loading="lazy"
-          />
+          {story.imageUrl ? (
+            <img 
+              src={story.imageUrl} 
+              alt={story.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+          ) : (
+            <div className={`absolute inset-0 bg-gradient-to-br ${story.placeholderClass ?? 'from-white/20 via-white/5 to-black'}`}>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.28),transparent_26%),radial-gradient(circle_at_76%_72%,rgba(255,255,255,0.18),transparent_28%)]" />
+              <div className="absolute bottom-8 left-8 right-8 h-28 rounded-[28px] border border-white/12 bg-black/20 backdrop-blur-md" />
+            </div>
+          )}
           {/* Gradients for readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-95" />
           
