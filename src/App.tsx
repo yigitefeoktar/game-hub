@@ -384,10 +384,8 @@ export default function App() {
           <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/90 via-black/40 to-transparent w-full md:w-3/4" />
 
           <div className="absolute left-1/2 top-4 md:top-5 z-10 -translate-x-1/2">
-            <AnimatePresence initial={false}>
-              {!isCreatorOpen && (
-                <motion.button
-              layoutId="creator-about-surface"
+            {!isCreatorOpen && (
+              <motion.button
               type="button"
               onClick={(event) => {
                 event.stopPropagation();
@@ -396,12 +394,21 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
-              className="rounded-full border border-white/10 bg-white/20 px-4 py-2 text-xs font-semibold text-white shadow-sm backdrop-blur-md transition-colors hover:bg-white/30 active:scale-95 md:px-5"
+              className="relative overflow-hidden rounded-full px-4 py-2 text-xs font-semibold text-white shadow-sm transition-transform active:scale-95 md:px-5"
             >
-              Made by Yiğit Efe Oktar
-                </motion.button>
-              )}
-            </AnimatePresence>
+                  <motion.span
+                    layoutId="creator-about-surface"
+                    className="absolute inset-0 rounded-full border border-white/10 bg-white/20 backdrop-blur-md transition-colors hover:bg-white/30"
+                  />
+                  <motion.span
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 0.06 } }}
+                    className="relative z-10 block"
+                  >
+                    Made by Yiğit Efe Oktar
+                  </motion.span>
+              </motion.button>
+            )}
           </div>
 
           {/* Hero Content */}
@@ -545,7 +552,6 @@ export default function App() {
             onClick={() => setIsCreatorOpen(false)}
           >
             <motion.div
-              layoutId="creator-about-surface"
               role="dialog"
               aria-modal="true"
               aria-labelledby="creator-kicker"
@@ -554,13 +560,21 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
               onClick={(event) => event.stopPropagation()}
-              className="absolute left-1/2 top-4 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-[28px] border border-white/15 bg-white/[0.12] p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-2xl md:top-[60px] md:p-7"
+              className="absolute left-1/2 top-4 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-[28px] p-6 text-white shadow-2xl shadow-black/40 md:top-[60px] md:p-7"
             >
-              <div>
+              <motion.div
+                layoutId="creator-about-surface"
+                className="absolute inset-0 rounded-[28px] border border-white/15 bg-white/[0.12] backdrop-blur-2xl"
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.12 }}
+                className="relative z-10"
+              >
                 <span id="creator-kicker" className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
                   About the Creator
                 </span>
-              </div>
 
               <div className="space-y-4 text-sm leading-7 text-white/85 md:text-base md:leading-8">
                 <p>
@@ -573,6 +587,7 @@ export default function App() {
                   I am putting the games I vibe-coded here on this website, together with articles about the tools I use, how I work, and what I am learning while building.
                 </p>
               </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
