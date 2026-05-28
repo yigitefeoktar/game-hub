@@ -302,7 +302,7 @@ It was the first game of this scale I had ever made, and I fell into feature cre
 I also think the game does not fully work in its current fast-paced arcade format. For the future version, I want to make it slower and more strategic. Instead of controlling individual pieces all the time, you would control large armies to capture mines and factories.
 
 The maps would be more interesting, and the game would have much more tactical depth while still keeping the core rules of chess. I do not want to fully turn it into something like StarCraft or Age of Empires. The idea is to keep individual piece management in the early game, then add army movement and new mechanics for the endgame.`,
-    placeholderClass: 'from-sky-500/45 via-cyan-300/20 to-black',
+    imageUrl: '/assets/100-player-chess-card.png',
   },
   {
     id: 'behind-ricochet-arena',
