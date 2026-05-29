@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { ArrowRight, BookOpen, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // --- MOCK DATA ---
@@ -266,30 +266,45 @@ const STORY_SECTION_HEADINGS = new Set([
   'Final idea',
 ]);
 
-const STORY_CARDS = [
+type Article = {
+  id: string;
+  tag: string;
+  title: string;
+  excerpt: string;
+  body: string;
+  imageUrl: string;
+  readingTime: string;
+};
+
+const ARTICLES: Article[] = [
   {
     id: 's1',
     tag: 'VIBE CODING',
     title: 'What AI Tools I Recommend',
-    description: AI_TOOLS_RECOMMENDATION,
+    excerpt: 'The tools I started with, what I use now, and what I would recommend depending on your budget.',
+    body: AI_TOOLS_RECOMMENDATION,
     imageUrl: '/assets/story-cards/what-ai-tools-cover.png',
+    readingTime: '8 min read',
   },
   {
     id: 's2',
     tag: 'WORKFLOW',
     title: 'How We Build Games',
-    description: ONE_PERSON_AI_COMPANY,
+    excerpt: 'Our workflow for using AI agents like a small team, from design docs to testing and polish.',
+    body: ONE_PERSON_AI_COMPANY,
     imageUrl: '/assets/story-cards/how-we-build-games-cover.png',
+    readingTime: '6 min read',
   },
   {
     id: 's3',
     tag: 'PRODUCTIVITY',
     title: 'Productivity for a One-Person AI Company',
-    description: ONE_PERSON_AI_PRODUCTIVITY,
+    excerpt: 'A system for using your energy, AI agents, and Notion better while building real projects.',
+    body: ONE_PERSON_AI_PRODUCTIVITY,
     imageUrl: '/assets/story-cards/productivity-cover.png',
+    readingTime: '10 min read',
   }
 ];
-
 const GAME_NOTE_CARDS = [
   {
     id: 'behind-100-player-chess',
@@ -339,16 +354,17 @@ One thing I would change is that I would add more original mechanics, like plane
 export default function App() {
   const [activeGame, setActiveGame] = useState<{ id: string; gameUrl: string; title: string } | null>(null);
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
+  const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
 
-  // Stop body scroll when a fullscreen game or story modal is active
+  // Stop body scroll when a fullscreen game, story modal, or article reader is active
   React.useEffect(() => {
-    if (activeGame || activeStory) {
+    if (activeGame || activeStory || activeArticle) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [activeGame, activeStory]);
+  }, [activeGame, activeStory, activeArticle]);
 
   React.useEffect(() => {
     if (!isCreatorOpen) {
@@ -435,7 +451,7 @@ export default function App() {
         {/* Stories / Editorial Section */}
         <section className="px-6 md:px-0 pb-24">
           <SectionHeader title="AI Builder Notes" />
-          <StoryGrid stories={STORY_CARDS} onStoryClick={setActiveStory} />
+          <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} />
         </section>
 
       </main>
@@ -531,6 +547,12 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Fullscreen Article Reader */}
+      <AnimatePresence>
+        {activeArticle && (
+          <ArticleReader article={activeArticle} onClose={() => setActiveArticle(null)} />
+        )}
+      </AnimatePresence>
       {/* Creator Popup */}
       <AnimatePresence>
         {isCreatorOpen && (
@@ -661,6 +683,105 @@ function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (s
   );
 }
 
+function ArticleList({ articles, onArticleClick }: { articles: Article[], onArticleClick: (article: Article) => void }) {
+  return (
+    <div className="space-y-5 md:space-y-6">
+      {articles.map((article) => (
+        <button
+          key={article.id}
+          onClick={() => onArticleClick(article)}
+          className="group grid w-full overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] text-left shadow-xl shadow-black/25 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] active:scale-[0.995] md:grid-cols-[minmax(240px,36%)_1fr] md:rounded-[32px]"
+        >
+          <div className="relative aspect-[16/10] overflow-hidden bg-[#111] md:aspect-auto md:min-h-[260px]">
+            <img
+              src={article.imageUrl}
+              alt={article.title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/45" />
+          </div>
+
+          <div className="flex min-h-[260px] flex-col justify-between p-6 md:p-8 lg:p-10">
+            <div>
+              <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
+                <span>{article.tag}</span>
+                <span className="h-1 w-1 rounded-full bg-white/25" />
+                <span className="inline-flex items-center gap-1.5 normal-case tracking-normal text-white/45">
+                  <BookOpen className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  {article.readingTime}
+                </span>
+              </div>
+              <h4 className="max-w-3xl text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+                {article.title}
+              </h4>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+                {article.excerpt}
+              </p>
+            </div>
+
+            <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition-colors group-hover:text-white">
+              Read article
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.4} />
+            </span>
+          </div>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function ArticleReader({ article, onClose }: { article: Article, onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.22 }}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black text-white"
+    >
+      <div className="sticky top-0 z-20 flex justify-start px-4 py-4 md:px-8 md:py-6">
+        <button
+          onClick={onClose}
+          className="flex items-center justify-center rounded-full border border-white/20 bg-black/55 p-3 shadow-xl backdrop-blur-xl transition-all hover:bg-black/75 hover:scale-105 active:scale-95"
+          title="Close article"
+        >
+          <X className="h-5 w-5 text-white transition-colors group-hover:text-red-400" strokeWidth={2.5} />
+        </button>
+      </div>
+
+      <article className="-mt-[76px] pb-20 md:-mt-[88px]">
+        <header className="relative min-h-[62vh] overflow-hidden md:min-h-[70vh]">
+          <img
+            src={article.imageUrl}
+            alt={article.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
+          <div className="absolute inset-x-0 bottom-0 mx-auto max-w-4xl px-6 pb-10 pt-32 md:px-8 md:pb-14">
+            <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-white/60 md:text-sm">
+              <span>{article.tag}</span>
+              <span className="h-1 w-1 rounded-full bg-white/35" />
+              <span className="normal-case tracking-normal text-white/55">{article.readingTime}</span>
+            </div>
+            <h1 className="max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight text-white md:text-6xl">
+              {article.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-white/75 md:text-lg md:leading-8">
+              {article.excerpt}
+            </p>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-3xl px-6 pt-10 md:px-8 md:pt-14">
+          <div className="space-y-6 text-[16px] leading-8 text-white/82 md:text-lg md:leading-9">
+            {renderStoryDescription(article.body)}
+          </div>
+        </div>
+      </article>
+    </motion.div>
+  );
+}
 function SectionHeader({ title }: { title: string }) {
   return (
     <div className="mb-4 text-left">
