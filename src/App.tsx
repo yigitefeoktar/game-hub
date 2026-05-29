@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ArrowRight, BookOpen, X } from 'lucide-react';
+import { ArrowRight, BookOpen, ChevronDown, ExternalLink, Github, Star, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // --- MOCK DATA ---
@@ -43,12 +43,12 @@ const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
-  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Live' },
   { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
   { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
-  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://ricochet-arena.vercel.app', status: 'Beta' },
 ];
 
@@ -68,6 +68,17 @@ const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
 
   return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
 });
+
+const GITHUB_PROJECTS = [
+  { title: 'Game Hub', repoUrl: 'https://github.com/yigitefeoktar/game-hub' },
+  { title: 'War of Planets', repoUrl: 'https://github.com/yigitefeoktar/war-of-planets' },
+  { title: '100 Player Chess', repoUrl: 'https://github.com/yigitefeoktar/100-player-chess' },
+  { title: 'Ricochet Arena', repoUrl: 'https://github.com/yigitefeoktar/ricochet-arena' },
+  { title: 'Neon Drift', repoUrl: 'https://github.com/yigitefeoktar/neon-drift-deploy' },
+  { title: 'Gemini Clash', repoUrl: 'https://github.com/yigitefeoktar/gemini-clash-village' },
+  { title: 'Toy Box', repoUrl: 'https://github.com/yigitefeoktar/toy-box' },
+  { title: 'React Chess', repoUrl: 'https://github.com/yigitefeoktar/react-chess-sage-two' },
+];
 
 const AI_TOOLS_RECOMMENDATION = `The tools I started with, what I use now, and what I would recommend depending on your budget.
 
@@ -381,6 +392,7 @@ export default function App() {
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
+  const [isGithubProjectsOpen, setIsGithubProjectsOpen] = useState(false);
   const [activeHeroIndex, setActiveHeroIndex] = useState(0);
   const [heroDirection, setHeroDirection] = useState(1);
   const [isDesktopHero, setIsDesktopHero] = useState(false);
@@ -426,13 +438,9 @@ export default function App() {
     const closeCreatorPopup = () => setIsCreatorOpen(false);
 
     window.addEventListener('scroll', closeCreatorPopup, { passive: true });
-    window.addEventListener('wheel', closeCreatorPopup, { passive: true });
-    window.addEventListener('touchmove', closeCreatorPopup, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', closeCreatorPopup);
-      window.removeEventListener('wheel', closeCreatorPopup);
-      window.removeEventListener('touchmove', closeCreatorPopup);
     };
   }, [isCreatorOpen]);
 
@@ -709,7 +717,7 @@ export default function App() {
               exit={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
               onClick={(event) => event.stopPropagation()}
-              className="absolute left-1/2 top-4 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-[28px] border border-white/10 bg-white/20 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-md md:top-[60px] md:p-7"
+              className="absolute left-1/2 top-4 max-h-[calc(100vh-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-y-auto rounded-[28px] border border-white/10 bg-white/20 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-md md:top-[60px] md:max-h-[calc(100vh-120px)] md:p-7"
             >
               <div>
                 <span id="creator-kicker" className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
@@ -727,6 +735,64 @@ export default function App() {
                 <p>
                   I am putting the games I vibe-coded here on this website, together with articles about the tools I use, how I work, and what I am learning while building.
                 </p>
+              </div>
+
+              <div className="mt-6 rounded-[22px] border border-white/10 bg-black/20 p-4 shadow-inner shadow-black/20">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10">
+                    <Github className="h-4.5 w-4.5 text-white" strokeWidth={2.2} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium leading-6 text-white/90">
+                      You can help me by giving stars to my projects on GitHub.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setIsGithubProjectsOpen((isOpen) => !isOpen)}
+                      aria-expanded={isGithubProjectsOpen}
+                      className="mt-3 inline-flex w-full items-center justify-between gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/15 active:scale-[0.99]"
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <Star className="h-4 w-4 text-amber-200" strokeWidth={2.2} />
+                        Support on GitHub
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 text-white/65 transition-transform duration-300 ${isGithubProjectsOpen ? 'rotate-180' : ''}`}
+                        strokeWidth={2.4}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                <AnimatePresence initial={false}>
+                  {isGithubProjectsOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.24, ease: 'easeOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-4 grid gap-2">
+                        {GITHUB_PROJECTS.map((project) => (
+                          <a
+                            key={project.repoUrl}
+                            href={project.repoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white/82 transition-all hover:border-white/20 hover:bg-white/[0.1] hover:text-white"
+                          >
+                            <span className="min-w-0 truncate font-medium">{project.title}</span>
+                            <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-white/50 transition-colors group-hover:text-amber-100">
+                              Star
+                              <ExternalLink className="h-3.5 w-3.5" strokeWidth={2.4} />
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           </motion.div>
