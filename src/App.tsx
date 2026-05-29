@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ArrowRight, BookOpen, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -14,6 +14,30 @@ const FEATURED_GAME = {
   iconUrl: '/icons/war-of-planets-ai.png',
   gameUrl: 'https://war-of-planets.vercel.app',
 };
+
+const FEATURED_GAMES = [
+  FEATURED_GAME,
+  {
+    id: 'featured-100-player-chess',
+    title: '100 Player Chess',
+    subtitle: 'STRATEGY',
+    tag: 'Prototype',
+    description: 'A massive chess experiment where armies, chaos, and territory collide at unusual scale.',
+    coverUrl: '/assets/hero-100-player-chess.png',
+    iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png',
+    gameUrl: 'https://100playerchess.com',
+  },
+  {
+    id: 'featured-ricochet-arena',
+    title: 'Ricochet Arena',
+    subtitle: 'ACTION',
+    tag: 'Beta',
+    description: 'Dodge, shoot, and survive in a neon arena where every bullet keeps bouncing.',
+    coverUrl: '/assets/hero-ricochet-arena.png',
+    iconUrl: '/icons/ricochet-arena.png',
+    gameUrl: 'https://ricochet-arena.vercel.app',
+  },
+];
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
@@ -305,6 +329,7 @@ const ARTICLES: Article[] = [
     readingTime: '10 min read',
   }
 ];
+
 const GAME_NOTE_CARDS = [
   {
     id: 'behind-100-player-chess',
@@ -356,6 +381,33 @@ export default function App() {
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
+  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
+  const [heroDirection, setHeroDirection] = useState(1);
+  const [isDesktopHero, setIsDesktopHero] = useState(false);
+  const dragMovedRef = useRef(false);
+
+  const activeHero = FEATURED_GAMES[activeHeroIndex];
+
+  const showHero = (index: number) => {
+    const nextIndex = (index + FEATURED_GAMES.length) % FEATURED_GAMES.length;
+
+    if (nextIndex === activeHeroIndex) {
+      return;
+    }
+
+    setHeroDirection(nextIndex > activeHeroIndex ? 1 : -1);
+    setActiveHeroIndex(nextIndex);
+  };
+
+  const showNextHero = () => {
+    setHeroDirection(1);
+    setActiveHeroIndex((currentIndex) => (currentIndex + 1) % FEATURED_GAMES.length);
+  };
+
+  const showPreviousHero = () => {
+    setHeroDirection(-1);
+    setActiveHeroIndex((currentIndex) => (currentIndex - 1 + FEATURED_GAMES.length) % FEATURED_GAMES.length);
+  };
 
   // Stop body scroll when a fullscreen game, story modal, or article reader is active
   React.useEffect(() => {
@@ -384,17 +436,78 @@ export default function App() {
     };
   }, [isCreatorOpen]);
 
+  React.useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    const updateHeroMode = () => setIsDesktopHero(desktopQuery.matches);
+
+    updateHeroMode();
+    desktopQuery.addEventListener('change', updateHeroMode);
+
+    return () => desktopQuery.removeEventListener('change', updateHeroMode);
+  }, []);
+
+  React.useEffect(() => {
+    if (activeGame || activeStory || activeArticle || isCreatorOpen) {
+      return;
+    }
+
+    const autoplay = window.setInterval(() => {
+      setHeroDirection(1);
+      setActiveHeroIndex((currentIndex) => (currentIndex + 1) % FEATURED_GAMES.length);
+    }, 6500);
+
+    return () => window.clearInterval(autoplay);
+  }, [activeHeroIndex, activeGame, activeStory, activeArticle, isCreatorOpen]);
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-0 md:pt-10 space-y-8 md:space-y-12">
+        <div className="space-y-3">
         {/* Hero Section */}
-        <section className="relative -mx-4 w-[calc(100%+2rem)] aspect-[4/5] overflow-hidden rounded-none group cursor-pointer md:mx-0 md:w-full md:aspect-[21/9] md:rounded-[32px]" onClick={() => setActiveGame(FEATURED_GAME)}>
+        <motion.section
+          className="relative -mx-4 w-[calc(100%+2rem)] aspect-[4/5] overflow-hidden rounded-none group cursor-pointer md:mx-0 md:w-full md:aspect-[21/9] md:rounded-[32px]"
+          style={{ touchAction: 'pan-y' }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.12}
+          onDragStart={() => {
+            dragMovedRef.current = true;
+          }}
+          onDragEnd={(_, info) => {
+            if (info.offset.x < -80 || info.velocity.x < -450) {
+              showNextHero();
+            } else if (info.offset.x > 80 || info.velocity.x > 450) {
+              showPreviousHero();
+            }
+
+            window.setTimeout(() => {
+              dragMovedRef.current = false;
+            }, 0);
+          }}
+          onClick={() => {
+            if (!dragMovedRef.current) {
+              setActiveGame(activeHero);
+            }
+          }}
+        >
           {/* Background Image */}
-          <img 
-            src={FEATURED_GAME.coverUrl} 
-            alt={FEATURED_GAME.title} 
-            className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-          />
+          <AnimatePresence initial={false} mode="sync">
+            <motion.div
+              key={activeHero.coverUrl}
+              initial={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * 96 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * -96 }}
+              transition={isDesktopHero ? { duration: 0.38, ease: 'easeOut' } : { duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0"
+            >
+              <img
+                src={activeHero.coverUrl}
+                alt={activeHero.title}
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                draggable={false}
+              />
+            </motion.div>
+          </AnimatePresence>
           {/* Gradient Overlays for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent md:from-black/80 md:via-black/20" />
           <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/90 via-black/40 to-transparent w-full md:w-3/4" />
@@ -419,22 +532,47 @@ export default function App() {
           </div>
 
           {/* Hero Content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 md:pb-16 text-center md:text-left items-center md:items-start">
+          <AnimatePresence initial={false} mode="sync">
+            <motion.div
+              key={`${activeHero.id}-content`}
+              initial={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * 56 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * -56 }}
+              transition={isDesktopHero ? { duration: 0.28, ease: 'easeOut' } : { duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 md:pb-16 text-center md:text-left items-center md:items-start"
+            >
             <div className="flex items-center gap-2 mb-2">
-              <img src={FEATURED_GAME.iconUrl} alt="icon" className="w-6 h-6 rounded-md shadow-sm" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-white/80">{FEATURED_GAME.subtitle}</span>
+              <img src={activeHero.iconUrl} alt="icon" className="w-6 h-6 rounded-md shadow-sm" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-white/80">{activeHero.subtitle}</span>
               <span className="text-xs font-semibold text-white/40">•</span>
-              <span className="text-xs font-semibold text-white/60">{FEATURED_GAME.tag}</span>
+              <span className="text-xs font-semibold text-white/60">{activeHero.tag}</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 max-w-full md:max-w-md lg:max-w-xl">{FEATURED_GAME.title}</h2>
-            <p className="text-sm md:text-base text-white/70 mb-6 max-w-full md:max-w-sm lg:max-w-md">{FEATURED_GAME.description}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 max-w-full md:max-w-md lg:max-w-xl">{activeHero.title}</h2>
+            <p className="text-sm md:text-base text-white/70 mb-6 max-w-full md:max-w-sm lg:max-w-md">{activeHero.description}</p>
             
             <button className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 text-white font-semibold py-3 px-12 rounded-full transition-all duration-300">
               Play
             </button>
 
-          </div>
-        </section>
+            </motion.div>
+          </AnimatePresence>
+        </motion.section>
+
+        <div className="flex items-center justify-center gap-2">
+          {FEATURED_GAMES.map((game, index) => (
+            <button
+              key={game.id}
+              type="button"
+              onClick={() => showHero(index)}
+              aria-label={`Show ${game.title}`}
+              aria-current={index === activeHeroIndex ? 'true' : undefined}
+              className={`h-2.5 w-2.5 rounded-full border backdrop-blur-md transition-colors duration-300 ${
+                index === activeHeroIndex ? 'border-white bg-white' : 'border-white/10 bg-white/20 hover:bg-white/30'
+              }`}
+            />
+          ))}
+        </div>
+        </div>
 
         {/* All Games Grid */}
         <section className="px-6 md:px-0 pb-12">
@@ -553,6 +691,7 @@ export default function App() {
           <ArticleReader article={activeArticle} onClose={() => setActiveArticle(null)} />
         )}
       </AnimatePresence>
+
       {/* Creator Popup */}
       <AnimatePresence>
         {isCreatorOpen && (
@@ -782,6 +921,7 @@ function ArticleReader({ article, onClose }: { article: Article, onClose: () => 
     </motion.div>
   );
 }
+
 function SectionHeader({ title }: { title: string }) {
   return (
     <div className="mb-4 text-left">
