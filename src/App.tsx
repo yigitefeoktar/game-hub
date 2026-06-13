@@ -308,6 +308,8 @@ type Article = {
   excerpt: string;
   body: string;
   imageUrl: string;
+  cardColor: string;
+  cardAccent: string;
   readingTime: string;
 };
 
@@ -318,7 +320,9 @@ const ARTICLES: Article[] = [
     title: 'What AI Tools I Recommend',
     excerpt: 'The tools I started with, what I use now, and what I would recommend depending on your budget.',
     body: AI_TOOLS_RECOMMENDATION,
-    imageUrl: '/assets/story-cards/what-ai-tools-cover.png',
+    imageUrl: '/assets/story-cards/ai-tools-light-manual.png',
+    cardColor: '10 28 43',
+    cardAccent: '74 174 232',
     readingTime: '8 min read',
   },
   {
@@ -327,7 +331,9 @@ const ARTICLES: Article[] = [
     title: 'How We Build Games',
     excerpt: 'Our workflow for using AI agents like a small team, from design docs to testing and polish.',
     body: ONE_PERSON_AI_COMPANY,
-    imageUrl: '/assets/story-cards/how-we-build-games-cover.png',
+    imageUrl: '/assets/story-cards/build-games-light-manual.png',
+    cardColor: '42 22 15',
+    cardAccent: '242 139 72',
     readingTime: '6 min read',
   },
   {
@@ -336,7 +342,9 @@ const ARTICLES: Article[] = [
     title: 'Productivity for a One-Person AI Company',
     excerpt: 'A system for using your energy, AI agents, and Notion better while building real projects.',
     body: ONE_PERSON_AI_PRODUCTIVITY,
-    imageUrl: '/assets/story-cards/productivity-cover.png',
+    imageUrl: '/assets/story-cards/productivity-light-manual.png',
+    cardColor: '14 35 27',
+    cardAccent: '100 196 128',
     readingTime: '10 min read',
   }
 ];
@@ -804,7 +812,9 @@ export default function App() {
 
 // --- SUB-COMPONENTS ---
 
-function renderStoryDescription(description: string) {
+function renderStoryDescription(description: string, theme: 'dark' | 'light' = 'dark') {
+  const isLight = theme === 'light';
+
   return description.split('\n\n').map((block, index) => {
     const text = block.trim();
 
@@ -817,13 +827,13 @@ function renderStoryDescription(description: string) {
 
       return (
         <div key={`${text}-${index}`} className="pt-7">
-          <div className="mb-5 h-px w-full bg-white/10" />
+          <div className={`mb-5 h-px w-full ${isLight ? 'bg-slate-950/12' : 'bg-white/10'}`} />
           {sectionHeading && (
-            <span className="mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-white/45">
+            <span className={`mb-2 block text-xs font-bold uppercase tracking-[0.18em] ${isLight ? 'text-slate-950/45' : 'text-white/45'}`}>
               {sectionLabel}
             </span>
           )}
-          <h4 className="text-lg font-semibold tracking-tight text-white md:text-xl">
+          <h4 className={`text-lg font-semibold tracking-tight md:text-xl ${isLight ? 'text-slate-950' : 'text-white'}`}>
             {sectionHeading ?? sectionLabel}
           </h4>
         </div>
@@ -833,7 +843,9 @@ function renderStoryDescription(description: string) {
     return (
       <p
         key={`${text.slice(0, 24)}-${index}`}
-        className={index === 0 ? 'text-base font-medium leading-7 text-white/90 md:text-lg md:leading-8' : undefined}
+        className={index === 0
+          ? `text-base font-medium leading-7 md:text-lg md:leading-8 ${isLight ? 'text-slate-950/90' : 'text-white/90'}`
+          : undefined}
       >
         {text}
       </p>
@@ -892,47 +904,56 @@ function ArticleList({ articles, onArticleClick }: { articles: Article[], onArti
   return (
     <div className="space-y-5 md:space-y-6">
       {articles.map((article) => (
-        <button
-          key={article.id}
-          onClick={() => onArticleClick(article)}
-          className="group grid w-full overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] text-left shadow-xl shadow-black/25 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] active:scale-[0.995] md:grid-cols-[minmax(240px,36%)_1fr] md:rounded-[32px]"
-        >
-          <div className="relative aspect-[16/10] overflow-hidden bg-[#111] md:aspect-auto md:min-h-[260px]">
-            <img
-              src={article.imageUrl}
-              alt={article.title}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-black/45" />
-          </div>
-
-          <div className="flex min-h-[260px] flex-col justify-between p-6 md:p-8 lg:p-10">
-            <div>
-              <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
-                <span>{article.tag}</span>
-                <span className="h-1 w-1 rounded-full bg-white/25" />
-                <span className="inline-flex items-center gap-1.5 normal-case tracking-normal text-white/45">
-                  <BookOpen className="h-3.5 w-3.5" strokeWidth={2.2} />
-                  {article.readingTime}
-                </span>
-              </div>
-              <h4 className="max-w-3xl text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
-                {article.title}
-              </h4>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
-                {article.excerpt}
-              </p>
-            </div>
-
-            <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition-colors group-hover:text-white">
-              Read article
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.4} />
-            </span>
-          </div>
-        </button>
+        <ArticleCard key={article.id} article={article} onClick={() => onArticleClick(article)} />
       ))}
     </div>
+  );
+}
+
+function ArticleCard({ article, onClick }: { key?: React.Key, article: Article, onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        '--article-card-color': article.cardColor,
+        '--article-card-accent': article.cardAccent,
+      } as React.CSSProperties}
+      className="article-card group grid w-full overflow-hidden rounded-[28px] border text-left transition-all duration-300 active:scale-[0.995] md:grid-cols-[minmax(240px,36%)_1fr] md:rounded-[32px]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-[#111] md:aspect-auto md:min-h-[260px]">
+        <img
+          src={article.imageUrl}
+          alt={article.title}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+          loading="lazy"
+        />
+        <div className="article-card-image-shade absolute inset-0" />
+      </div>
+
+      <div className="flex min-h-[260px] flex-col justify-between p-6 md:p-8 lg:p-10">
+        <div>
+          <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
+            <span>{article.tag}</span>
+            <span className="h-1 w-1 rounded-full bg-white/25" />
+            <span className="inline-flex items-center gap-1.5 normal-case tracking-normal text-white/45">
+              <BookOpen className="h-3.5 w-3.5" strokeWidth={2.2} />
+              {article.readingTime}
+            </span>
+          </div>
+          <h4 className="max-w-3xl text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl lg:text-4xl">
+            {article.title}
+          </h4>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+            {article.excerpt}
+          </p>
+        </div>
+
+        <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition-colors group-hover:text-white">
+          Read article
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.4} />
+        </span>
+      </div>
+    </button>
   );
 }
 
@@ -943,7 +964,11 @@ function ArticleReader({ article, onClose }: { article: Article, onClose: () => 
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.22 }}
-      className="fixed inset-0 z-50 overflow-y-auto bg-black text-white"
+      style={{
+        '--article-card-color': article.cardColor,
+        '--article-card-accent': article.cardAccent,
+      } as React.CSSProperties}
+      className="article-reader fixed inset-0 z-50 overflow-y-auto text-white"
     >
       <div className="sticky top-0 z-20 flex justify-start px-4 py-4 md:px-8 md:py-6">
         <button
@@ -951,7 +976,7 @@ function ArticleReader({ article, onClose }: { article: Article, onClose: () => 
           className="flex items-center justify-center rounded-full border border-white/20 bg-black/55 p-3 shadow-xl backdrop-blur-xl transition-all hover:bg-black/75 hover:scale-105 active:scale-95"
           title="Close article"
         >
-          <X className="h-5 w-5 text-white transition-colors group-hover:text-red-400" strokeWidth={2.5} />
+          <X className="h-5 w-5 text-white" strokeWidth={2.5} />
         </button>
       </div>
 
@@ -962,7 +987,7 @@ function ArticleReader({ article, onClose }: { article: Article, onClose: () => 
             alt={article.title}
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
+          <div className="article-reader-hero-shade absolute inset-0" />
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-4xl px-6 pb-10 pt-32 md:px-8 md:pb-14">
             <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.16em] text-white/60 md:text-sm">
               <span>{article.tag}</span>

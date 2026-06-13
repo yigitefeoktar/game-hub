@@ -12,6 +12,57 @@ body {
   margin: 0;
 }
 
+.article-card {
+  background:
+    radial-gradient(circle at 38% 38%, rgb(var(--article-card-accent) / 0.2), transparent 38%),
+    rgb(var(--article-card-color));
+  border-color: rgb(var(--article-card-accent) / 0.28);
+  box-shadow:
+    0 22px 52px rgb(0 0 0 / 0.28),
+    0 0 42px rgb(var(--article-card-accent) / 0.09);
+}
+
+.article-card:hover {
+  background:
+    radial-gradient(circle at 38% 38%, rgb(var(--article-card-accent) / 0.27), transparent 40%),
+    color-mix(in srgb, rgb(var(--article-card-color)) 92%, white);
+  border-color: rgb(var(--article-card-accent) / 0.52);
+  box-shadow:
+    0 26px 64px rgb(0 0 0 / 0.34),
+    0 0 54px rgb(var(--article-card-accent) / 0.16);
+}
+
+.article-card-image-shade {
+  background:
+    linear-gradient(to top, rgb(var(--article-card-color) / 0.64), transparent 44%),
+    linear-gradient(to right, transparent 60%, rgb(var(--article-card-color) / 0.88)),
+    linear-gradient(rgb(var(--article-card-accent) / 0.08), rgb(var(--article-card-color) / 0.2));
+}
+
+@media (min-width: 768px) {
+  .article-card-image-shade {
+    background: linear-gradient(
+      to right,
+      transparent 48%,
+      rgb(var(--article-card-color) / 0.78) 76%,
+      rgb(var(--article-card-color)) 100%
+    );
+  }
+}
+
+.article-reader {
+  background:
+    radial-gradient(circle at 50% 12%, rgb(var(--article-card-accent) / 0.12), transparent 36%),
+    rgb(var(--article-card-color));
+}
+
+.article-reader-hero-shade {
+  background:
+    linear-gradient(to top, rgb(var(--article-card-color)) 0%, rgb(var(--article-card-color) / 0.94) 30%, transparent 74%),
+    linear-gradient(to right, rgb(var(--article-card-color) / 0.48), transparent 52%),
+    linear-gradient(rgb(var(--article-card-accent) / 0.06), rgb(var(--article-card-color) / 0.16));
+}
+
 /* Hide scrollbars globally to make it feel more like a native app */
 ::-webkit-scrollbar {
   display: none;
