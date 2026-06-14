@@ -521,7 +521,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
       {activeCategory ? (
-        <main className="mx-auto min-h-screen max-w-7xl px-6 pb-16 pt-6 md:px-8 md:pb-20 md:pt-10">
+        <main className="mx-auto max-w-7xl px-6 pt-6 md:px-8 md:pt-10">
           <CategoryPageHeader title={{
             'behind-the-games': 'Behind the Games',
             'ai-builder-notes': 'AI Builder Notes',
@@ -673,7 +673,7 @@ export default function App() {
       </>
       )}
 
-      <footer className="mx-auto max-w-7xl px-10 pb-6 text-center md:px-8 md:pb-8">
+      <footer className="mx-auto max-w-7xl px-10 py-6 text-center md:px-8 md:py-8">
         <p className="mx-auto max-w-2xl text-sm leading-6 text-white/45">
           I use AI to improve the English and readability of my articles. The research, ideas, and opinions in them are my own.
         </p>
