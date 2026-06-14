@@ -12,6 +12,21 @@ body {
   margin: 0;
 }
 
+.footer-content-boundary {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.site-footer {
+  padding-block: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    padding-block: 2rem;
+  }
+}
+
 .category-preview > :nth-child(n + 2) {
   display: none;
 }
