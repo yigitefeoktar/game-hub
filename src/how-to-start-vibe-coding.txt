@@ -1,0 +1,176 @@
+# How to start vibe coding with Codex
+
+Vibe coding gets much easier when you stop treating the AI like one long chat and start treating it like a project worker.
+
+The biggest mistake is opening one chat, asking it to do everything, and then continuing that same chat forever. After a while, the context gets messy, the AI remembers too many old decisions, and the task becomes harder than it needs to be.
+
+A better workflow is simple:
+
+Use a project for each codebase.
+Use a new chat for each task.
+Keep a short context file.
+Test the result.
+Commit the working version.
+
+That is the basic system.
+
+## Start by setting up your project
+
+If you are using Codex, the first thing you should do is bring your project into Codex properly.
+
+Each codebase should be its own project. If you have a game, that game should be one project. If you have your website, that website should be another project.
+
+You can technically find ways to give code to an individual chat, but setting it up as a project keeps everything cleaner. It makes it easier to open multiple chats inside the same codebase without losing track of what you are working on.
+
+This matters because vibe coding is not just about one good prompt. It is about keeping the whole workflow organized.
+
+## Do not use one giant chat for everything
+
+You should start a new chat every time there is a new task.
+
+A task should be something clear, like:
+
+* Add a main menu
+* Fix the mobile layout
+* Improve the article cards
+* Add a restart button
+* Connect the game to a backend
+* Fix this specific bug
+
+A task should not be:
+
+* Make the game better
+* Continue working
+* Build the whole thing
+* Fix everything
+
+The reason is simple. A clean chat has a clean job.
+
+When the task is done, open a new chat for the next task. Codex can analyze the codebase again, and that usually takes much less time than dealing with a messy chat that has too much old context inside it.
+
+This also helps you go through your limits slower, because the model is not carrying unnecessary context from old tasks.
+
+## Use short prompts, but give good context
+
+Short prompts are usually better than giant prompts.
+
+You do not need to write a huge essay every time. Two or three sentences can be enough if the task is clear.
+
+For example:
+
+> Add a restart button to the victory screen. It should return the player to the main menu. Do not change the gameplay logic unless it is necessary.
+
+That is better than a giant vague prompt about improving the whole game.
+
+But short prompts only work if the AI already has good context. That is why you should keep a small `.md` file in the project.
+
+## Keep a small context file
+
+Make a short Markdown file for the project. It can be called something like:
+
+`PROJECT_CONTEXT.md`
+
+or
+
+`AI_NOTES.md`
+
+This file should explain the important things the AI needs to know:
+
+* What the project is
+* What the core idea is
+* What should not be changed
+* Current controls
+* Important systems
+* Known problems
+* What “done” looks like
+* Any style or design rules
+
+You do not need to make it perfect. The point is just to stop repeating yourself in every chat.
+
+When the agent messes up because it misunderstood something, update the file. Over time, that file becomes the memory of the project.
+
+This is one of the simplest ways to reduce context rot.
+
+## Work in parallel, but do not lose control
+
+One of the biggest advantages of Codex is that you can run multiple tasks in parallel.
+
+This can make you build much faster. For example, one chat can work on a website issue while another works on a game bug and another writes a small document.
+
+But you need to be careful.
+
+Do not start too many tasks at the same time. It gets confusing really fast.
+
+Also, do not let two chats edit the same files at the same time unless you know what you are doing. That is how you create conflicts and weird bugs.
+
+A good beginner rule is:
+
+You can run multiple tasks in parallel if they are clearly separated.
+
+For example:
+
+* One task edits the landing page
+* One task edits a specific game file
+* One task writes documentation
+* One task improves images or text
+
+That is usually fine.
+
+But if two agents are both changing the same game system, you should probably do one at a time.
+
+## Use GitHub early
+
+Setting up GitHub is really important.
+
+You want a place where the working version of your code is safe. Your local version is where you experiment. GitHub is where the clean version should live.
+
+The simple workflow is:
+
+1. Let the AI make the change.
+2. Test the project.
+3. If it works, commit the change.
+4. If the project is important, push it to GitHub.
+
+For small personal projects, committing to main can be okay if you are moving fast. But for bigger or more serious projects, branches are safer.
+
+The main point is this:
+
+Do not let the AI make ten big changes with no saved working version.
+
+If something works, save it.
+
+## Do not start with complicated Git workflows
+
+You can go much deeper with GitHub, branches, pull requests, and worktrees.
+
+Those tools are powerful, especially when multiple agents are working in parallel. But if you are just starting, they can become too complicated.
+
+You do not need the perfect professional workflow on day one.
+
+Start with this:
+
+Project.
+Task chat.
+Short prompt.
+Context file.
+Test.
+Commit.
+
+That is already enough to build a lot.
+
+Later, when your projects get bigger, you can learn branches, pull requests, and worktrees properly.
+
+## The real point
+
+Vibe coding is not about writing one magic prompt.
+
+It is about managing the AI so it can actually build.
+
+Use short prompts.
+Keep the project context written down.
+Start a new chat for each task.
+Do not let chats get messy.
+Use GitHub so working versions are safe.
+Run tasks in parallel, but only when they are separated clearly.
+
+That is how vibe coding starts to feel less random and more like a real workflow.

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { ArrowRight, BookOpen, ChevronDown, ExternalLink, Github, Star, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, Star, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
 
 // --- MOCK DATA ---
 // Replace the gameUrls with your actual game links, and icons with your own artwork.
@@ -70,14 +71,13 @@ const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
 });
 
 const GITHUB_PROJECTS = [
-  { title: 'Game Hub', repoUrl: 'https://github.com/yigitefeoktar/game-hub' },
-  { title: 'War of Planets', repoUrl: 'https://github.com/yigitefeoktar/war-of-planets' },
-  { title: '100 Player Chess', repoUrl: 'https://github.com/yigitefeoktar/100-player-chess' },
-  { title: 'Ricochet Arena', repoUrl: 'https://github.com/yigitefeoktar/ricochet-arena' },
-  { title: 'Neon Drift', repoUrl: 'https://github.com/yigitefeoktar/neon-drift-deploy' },
-  { title: 'Gemini Clash', repoUrl: 'https://github.com/yigitefeoktar/gemini-clash-village' },
-  { title: 'Toy Box', repoUrl: 'https://github.com/yigitefeoktar/toy-box' },
-  { title: 'React Chess', repoUrl: 'https://github.com/yigitefeoktar/react-chess-sage-two' },
+  { title: 'Game Hub', description: 'The home for all of my games and builder notes.', repoUrl: 'https://github.com/yigitefeoktar/game-hub' },
+  { title: 'Neon Drift', description: 'A compact arcade game built around speed and control.', repoUrl: 'https://github.com/yigitefeoktar/neon-drift' },
+  { title: 'Toy Box', description: 'A playful collection of small games and experiments.', repoUrl: 'https://github.com/yigitefeoktar/Toy-box' },
+  { title: 'War of Planets', description: 'A fast-paced strategy game set across a living galaxy.', repoUrl: 'https://github.com/yigitefeoktar/war-of-planets' },
+  { title: 'Gemini Clash Village', description: 'A village-building strategy game powered by AI.', repoUrl: 'https://github.com/yigitefeoktar/Gemini-Clash-Village' },
+  { title: 'Ricochet Arena', description: 'A neon shooter where every bullet keeps bouncing.', repoUrl: 'https://github.com/yigitefeoktar/Ricochet-Arena' },
+  { title: '100 Player Chess', description: 'An experimental large-scale twist on classic chess.', repoUrl: 'https://github.com/yigitefeoktar/100playerchess' },
 ];
 
 const AI_TOOLS_RECOMMENDATION = `The tools I started with, what I use now, and what I would recommend depending on your budget.
@@ -313,6 +313,18 @@ type Article = {
   readingTime: string;
 };
 
+type CategoryPage = 'behind-the-games' | 'ai-builder-notes';
+
+const CATEGORY_ROUTES: Record<CategoryPage, string> = {
+  'behind-the-games': '#/behind-the-games',
+  'ai-builder-notes': '#/ai-builder-notes',
+};
+
+function getCategoryFromHash(): CategoryPage | null {
+  const entry = Object.entries(CATEGORY_ROUTES).find(([, route]) => route === window.location.hash);
+  return entry ? entry[0] as CategoryPage : null;
+}
+
 const ARTICLES: Article[] = [
   {
     id: 's1',
@@ -346,7 +358,18 @@ const ARTICLES: Article[] = [
     cardColor: '14 35 27',
     cardAccent: '100 196 128',
     readingTime: '10 min read',
-  }
+  },
+  {
+    id: 's4',
+    tag: 'VIBE CODING',
+    title: 'How to start vibe coding with Codex',
+    excerpt: 'A practical beginner workflow for organizing Codex projects, task chats, context files, testing, and Git.',
+    body: HOW_TO_START_VIBE_CODING,
+    imageUrl: '/assets/story-cards/start-vibe-coding-with-codex.png',
+    cardColor: '48 42 8',
+    cardAccent: '250 215 70',
+    readingTime: '7 min read',
+  },
 ];
 
 const GAME_NOTE_CARDS = [
@@ -400,10 +423,12 @@ export default function App() {
   const [activeStory, setActiveStory] = useState<{ id: string; title: string; description: string; imageUrl?: string; placeholderClass?: string; tag: string } | null>(null);
   const [activeArticle, setActiveArticle] = useState<Article | null>(null);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
-  const [isGithubProjectsOpen, setIsGithubProjectsOpen] = useState(false);
+  const [creatorPopupView, setCreatorPopupView] = useState<'about' | 'github'>('about');
+  const [githubListEdges, setGithubListEdges] = useState({ atTop: true, atBottom: false });
   const [activeHeroIndex, setActiveHeroIndex] = useState(0);
   const [heroDirection, setHeroDirection] = useState(1);
   const [isDesktopHero, setIsDesktopHero] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<CategoryPage | null>(() => getCategoryFromHash());
   const dragMovedRef = useRef(false);
 
   const activeHero = FEATURED_GAMES[activeHeroIndex];
@@ -428,6 +453,24 @@ export default function App() {
     setHeroDirection(-1);
     setActiveHeroIndex((currentIndex) => (currentIndex - 1 + FEATURED_GAMES.length) % FEATURED_GAMES.length);
   };
+
+  const openCategory = (category: CategoryPage) => {
+    window.location.hash = CATEGORY_ROUTES[category];
+  };
+
+  const closeCategory = () => {
+    window.location.hash = '';
+  };
+
+  React.useEffect(() => {
+    const updateCategory = () => {
+      setActiveCategory(getCategoryFromHash());
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    window.addEventListener('hashchange', updateCategory);
+    return () => window.removeEventListener('hashchange', updateCategory);
+  }, []);
 
   // Stop body scroll when a fullscreen game, story modal, or article reader is active
   React.useEffect(() => {
@@ -477,6 +520,22 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-white/30">
+      {activeCategory ? (
+        <main className="mx-auto min-h-screen max-w-7xl px-6 pb-16 pt-6 md:px-8 md:pb-20 md:pt-10">
+          <CategoryPageHeader title={{
+            'behind-the-games': 'Behind the Games',
+            'ai-builder-notes': 'AI Builder Notes',
+          }[activeCategory]} onBack={closeCategory} />
+
+          {activeCategory === 'behind-the-games' && (
+            <StoryGrid stories={GAME_NOTE_CARDS} onStoryClick={setActiveStory} />
+          )}
+          {activeCategory === 'ai-builder-notes' && (
+            <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} />
+          )}
+        </main>
+      ) : (
+      <>
       <main className="max-w-7xl mx-auto px-4 md:px-8 pt-0 md:pt-10 space-y-8 md:space-y-12">
         <div className="space-y-3">
         {/* Hero Section */}
@@ -507,12 +566,12 @@ export default function App() {
           }}
         >
           {/* Background Image */}
-          <AnimatePresence initial={false} mode="sync">
+          <AnimatePresence initial={false} mode={isDesktopHero ? 'sync' : 'popLayout'}>
             <motion.div
               key={activeHero.coverUrl}
-              initial={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * 96 }}
+              initial={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: `${heroDirection * 100}%` }}
               animate={{ opacity: 1, x: 0 }}
-              exit={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * -96 }}
+              exit={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: `${heroDirection * -100}%` }}
               transition={isDesktopHero ? { duration: 0.38, ease: 'easeOut' } : { duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0"
             >
@@ -535,6 +594,7 @@ export default function App() {
               type="button"
               onClick={(event) => {
                 event.stopPropagation();
+                setCreatorPopupView('about');
                 setIsCreatorOpen(true);
               }}
                 initial={{ scale: 0.96 }}
@@ -548,13 +608,13 @@ export default function App() {
           </div>
 
           {/* Hero Content */}
-          <AnimatePresence initial={false} mode="sync">
+          <AnimatePresence initial={false} mode={isDesktopHero ? 'sync' : 'wait'}>
             <motion.div
               key={`${activeHero.id}-content`}
-              initial={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * 56 }}
+              initial={isDesktopHero ? { opacity: 0 } : { opacity: 0, x: heroDirection * 32 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={isDesktopHero ? { opacity: 0 } : { opacity: 1, x: heroDirection * -56 }}
-              transition={isDesktopHero ? { duration: 0.28, ease: 'easeOut' } : { duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+              exit={isDesktopHero ? { opacity: 0 } : { opacity: 0, x: heroDirection * -32 }}
+              transition={isDesktopHero ? { duration: 0.28, ease: 'easeOut' } : { duration: 0.22, ease: 'easeOut' }}
               className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 md:pb-16 text-center md:text-left items-center md:items-start"
             >
             <div className="flex items-center gap-2 mb-2">
@@ -583,7 +643,7 @@ export default function App() {
               aria-label={`Show ${game.title}`}
               aria-current={index === activeHeroIndex ? 'true' : undefined}
               className={`h-2.5 w-2.5 rounded-full border backdrop-blur-md transition-colors duration-300 ${
-                index === activeHeroIndex ? 'border-white bg-white' : 'border-white/10 bg-white/20 hover:bg-white/30'
+                index === activeHeroIndex ? 'border-white/20 bg-white/40' : 'border-white/10 bg-white/20 hover:bg-white/30'
               }`}
             />
           ))}
@@ -598,17 +658,26 @@ export default function App() {
 
         {/* Behind the Games Section */}
         <section className="px-6 md:px-0 pb-4">
-          <SectionHeader title="Behind the Games" />
-          <StoryGrid stories={GAME_NOTE_CARDS} onStoryClick={setActiveStory} />
+          <SectionHeader title="Behind the Games" onClick={() => openCategory('behind-the-games')} />
+          <StoryGrid stories={GAME_NOTE_CARDS} onStoryClick={setActiveStory} isPreview />
         </section>
 
         {/* Stories / Editorial Section */}
-        <section className="px-6 md:px-0 pb-24">
-          <SectionHeader title="AI Builder Notes" />
-          <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} />
+        <section className="px-6 md:px-0">
+          <SectionHeader title="AI Builder Notes" onClick={() => openCategory('ai-builder-notes')} />
+          <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} isPreview />
         </section>
 
       </main>
+
+      </>
+      )}
+
+      <footer className="mx-auto max-w-7xl px-10 pb-6 text-center md:px-8 md:pb-8">
+        <p className="mx-auto max-w-2xl text-sm leading-6 text-white/45">
+          I use AI to improve the English and readability of my articles. The research, ideas, and opinions in them are my own.
+        </p>
+      </footer>
 
       {/* Fullscreen Game Overlay */}
       <AnimatePresence>
@@ -719,89 +788,149 @@ export default function App() {
               layoutId="creator-about-surface"
               role="dialog"
               aria-modal="true"
-              aria-labelledby="creator-kicker"
+              aria-labelledby={creatorPopupView === 'about' ? 'creator-kicker' : 'github-kicker'}
               initial={{ scale: 0.96 }}
               animate={{ y: 0, scale: 1 }}
               exit={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.8 }}
               onClick={(event) => event.stopPropagation()}
-              className="absolute left-1/2 top-4 max-h-[calc(100vh-2rem)] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-y-auto rounded-[28px] border border-white/10 bg-white/20 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-md md:top-[60px] md:max-h-[calc(100vh-120px)] md:p-7"
+              className="absolute left-1/2 top-4 flex h-[min(520px,calc(100vh-2rem))] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/20 p-6 text-white shadow-2xl shadow-black/40 backdrop-blur-md md:top-[60px] md:h-[520px] md:p-7"
             >
-              <div>
-                <span id="creator-kicker" className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
-                  About the Creator
-                </span>
-              </div>
+              <AnimatePresence initial={false} mode="wait">
+                {creatorPopupView === 'about' ? (
+                  <motion.div
+                    key="creator-about"
+                    initial={{ opacity: 0, x: -18 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -18 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex min-h-0 flex-1 flex-col"
+                  >
+                    <div>
+                      <span id="creator-kicker" className="mb-4 block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
+                        About the Creator
+                      </span>
+                    </div>
 
-              <div className="space-y-4 text-sm leading-7 text-white/85 md:text-base md:leading-8">
-                <p>
-                  My name is Yiğit Efe. I am a high school student from Türkiye, and I have been seriously vibe coding since January 2026. I had tried vibe coding before that, but January was when AI models became good enough for my workflow to build full small games with them.
-                </p>
-                <p>
-                  My motto is not to cheat with AI, but to leverage AI. Every game on this site was built with AI-assisted coding, but the ideas, direction, testing, and final decisions are mine.
-                </p>
-                <p>
-                  I am putting the games I vibe-coded here on this website, together with articles about the tools I use, how I work, and what I am learning while building.
-                </p>
-              </div>
+                    <div className="min-h-0 flex-1 overflow-y-auto">
+                      <div className="space-y-4 text-sm leading-7 text-white/85 md:text-base md:leading-8">
+                        <p>
+                          My name is Yiğit Efe. I am a high school student from Türkiye, and I have been seriously vibe coding since January 2026. I had tried vibe coding before that, but January was when AI models became good enough to build full games with them.
+                        </p>
+                        <p>
+                          My motto is not to cheat with AI, but to leverage AI. Every game on this site was built with vibe coding, but the ideas, direction, testing, and final decisions are mine.
+                        </p>
+                        <p>
+                          I am putting the games I vibe coded here on this website, together with articles about the tools I use, how I work, and what I am learning while building.
+                        </p>
+                      </div>
+                    </div>
 
-              <div className="mt-6 rounded-[22px] border border-white/10 bg-black/20 p-4 shadow-inner shadow-black/20">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10">
-                    <Github className="h-4.5 w-4.5 text-white" strokeWidth={2.2} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium leading-6 text-white/90">
-                      You can help me by giving stars to my projects on GitHub.
-                    </p>
                     <button
                       type="button"
-                      onClick={() => setIsGithubProjectsOpen((isOpen) => !isOpen)}
-                      aria-expanded={isGithubProjectsOpen}
-                      className="mt-3 inline-flex w-full items-center justify-between gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/15 active:scale-[0.99]"
+                      onClick={() => {
+                        setGithubListEdges({ atTop: true, atBottom: false });
+                        setCreatorPopupView('github');
+                      }}
+                      className="group mt-4 flex w-full shrink-0 items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.12] px-3.5 py-2.5 text-left shadow-lg shadow-black/15 transition-all duration-300 hover:border-white/25 hover:bg-white/[0.18] active:scale-[0.985]"
                     >
-                      <span className="inline-flex items-center gap-2">
-                        <Star className="h-4 w-4 text-amber-200" strokeWidth={2.2} />
-                        Support on GitHub
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-md transition-transform duration-300 group-hover:scale-105">
+                        <img src="/icons/github-mark.svg" alt="" className="h-5 w-5" />
                       </span>
-                      <ChevronDown
-                        className={`h-4 w-4 text-white/65 transition-transform duration-300 ${isGithubProjectsOpen ? 'rotate-180' : ''}`}
-                        strokeWidth={2.4}
-                      />
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold text-white">Support my projects on GitHub</span>
+                        <span className="mt-0.5 block text-xs leading-5 text-white/55">You can help me for free by starring my repositories on GitHub.</span>
+                      </span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-white/50 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white" strokeWidth={2.4} />
                     </button>
-                  </div>
-                </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="creator-github"
+                    initial={{ opacity: 0, x: 18 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 18 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex min-h-0 flex-1 flex-col"
+                  >
+                    <div className="mb-4 flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setCreatorPopupView('about')}
+                        title="Back to About the Creator"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/75 transition-all hover:bg-white/20 hover:text-white active:scale-95"
+                      >
+                        <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
+                      </button>
+                      <div>
+                        <span id="github-kicker" className="block text-xs font-bold uppercase tracking-[0.18em] text-white/55">
+                          Support on GitHub
+                        </span>
+                        <p className="mt-1 text-xs text-white/45">Choose a project to visit its repository.</p>
+                      </div>
+                    </div>
 
-                <AnimatePresence initial={false}>
-                  {isGithubProjectsOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.24, ease: 'easeOut' }}
-                      className="overflow-hidden"
+                    <a
+                      href="https://github.com/yigitefeoktar"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex shrink-0 items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.12] px-3.5 py-2.5 transition-all duration-300 hover:border-white/25 hover:bg-white/[0.18] active:scale-[0.99]"
                     >
-                      <div className="mt-4 grid gap-2">
-                        {GITHUB_PROJECTS.map((project) => (
-                          <a
-                            key={project.repoUrl}
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-black shadow-md transition-transform duration-300 group-hover:scale-105">
+                        <img src="/icons/github-mark.svg" alt="" className="h-5 w-5" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold text-white">Yiğit Efe Oktar</span>
+                        <span className="mt-0.5 block text-xs text-white/50">View my GitHub profile</span>
+                      </span>
+                      <ExternalLink className="h-4 w-4 shrink-0 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80" strokeWidth={2.3} />
+                    </a>
+
+                    <div className="relative -mb-6 mt-2 min-h-0 flex-1 md:-mb-7">
+                      <div
+                        className={`github-repository-list h-full space-y-2 overflow-y-auto pb-2 pr-1 ${
+                          githubListEdges.atTop ? 'github-repository-list-at-top' : ''
+                        } ${githubListEdges.atBottom ? 'github-repository-list-at-bottom' : ''}`}
+                        onScroll={(event) => {
+                          const list = event.currentTarget;
+                          const atTop = list.scrollTop <= 1;
+                          const atBottom = list.scrollHeight - list.scrollTop - list.clientHeight <= 1;
+
+                          setGithubListEdges((currentEdges) => (
+                            currentEdges.atTop === atTop && currentEdges.atBottom === atBottom
+                              ? currentEdges
+                              : { atTop, atBottom }
+                          ));
+                        }}
+                      >
+                        {GITHUB_PROJECTS.map((project, index) => (
+                          <motion.a
+                            key={project.title}
                             href={project.repoUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="group flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white/82 transition-all hover:border-white/20 hover:bg-white/[0.1] hover:text-white"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.035 * index, duration: 0.24, ease: 'easeOut' }}
+                            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-black/15 px-3.5 py-2.5 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.1] active:scale-[0.99]"
                           >
-                            <span className="min-w-0 truncate font-medium">{project.title}</span>
-                            <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-white/50 transition-colors group-hover:text-amber-100">
-                              Star
-                              <ExternalLink className="h-3.5 w-3.5" strokeWidth={2.4} />
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-white/70 transition-colors group-hover:text-white">
+                              <Star className="h-4 w-4" strokeWidth={2.2} />
                             </span>
-                          </a>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-semibold text-white/90 group-hover:text-white">{project.title}</span>
+                              <span className="mt-0.5 block truncate text-xs text-white/45">{project.description}</span>
+                            </span>
+                            <ExternalLink className="h-4 w-4 shrink-0 text-white/35 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/75" strokeWidth={2.3} />
+                          </motion.a>
                         ))}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+
+                    </div>
+
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         )}
@@ -815,11 +944,65 @@ export default function App() {
 function renderStoryDescription(description: string, theme: 'dark' | 'light' = 'dark') {
   const isLight = theme === 'light';
 
-  return description.split('\n\n').map((block, index) => {
+  return description.replace(/\r\n/g, '\n').split('\n\n').map((block, index) => {
     const text = block.trim();
 
     if (!text) {
       return null;
+    }
+
+    if (text.startsWith('# ')) {
+      return (
+        <h3 key={`${text}-${index}`} className={`pt-3 text-2xl font-bold tracking-tight md:text-3xl ${isLight ? 'text-slate-950' : 'text-white'}`}>
+          {text.slice(2)}
+        </h3>
+      );
+    }
+
+    if (text.startsWith('## ')) {
+      return (
+        <div key={`${text}-${index}`} className="pt-7">
+          <div className={`mb-5 h-px w-full ${isLight ? 'bg-slate-950/12' : 'bg-white/10'}`} />
+          <h4 className={`text-lg font-semibold tracking-tight md:text-xl ${isLight ? 'text-slate-950' : 'text-white'}`}>
+            {text.slice(3)}
+          </h4>
+        </div>
+      );
+    }
+
+    if (text.startsWith('> ')) {
+      return (
+        <blockquote key={`${text}-${index}`} className={`rounded-2xl border-l-2 px-5 py-4 italic ${isLight ? 'border-slate-950/25 bg-slate-950/5 text-slate-950/75' : 'border-white/25 bg-white/5 text-white/75'}`}>
+          {text.slice(2)}
+        </blockquote>
+      );
+    }
+
+    const lines = text.split('\n');
+    if (lines.every((line) => line.startsWith('* '))) {
+      return (
+        <ul key={`${text}-${index}`} className="list-disc space-y-2 pl-6 marker:text-current">
+          {lines.map((line) => <li key={line}>{line.slice(2)}</li>)}
+        </ul>
+      );
+    }
+
+    if (lines.every((line) => /^\d+\. /.test(line))) {
+      return (
+        <ol key={`${text}-${index}`} className="list-decimal space-y-2 pl-6 marker:font-semibold">
+          {lines.map((line) => <li key={line}>{line.replace(/^\d+\. /, '')}</li>)}
+        </ol>
+      );
+    }
+
+    if (text.startsWith('`') && text.endsWith('`')) {
+      return (
+        <p key={`${text}-${index}`}>
+          <code className={`rounded-md px-2 py-1 text-[0.92em] ${isLight ? 'bg-slate-950/8 text-slate-950' : 'bg-white/10 text-white'}`}>
+            {text.slice(1, -1)}
+          </code>
+        </p>
+      );
     }
 
     if (STORY_SECTION_HEADINGS.has(text)) {
@@ -853,9 +1036,9 @@ function renderStoryDescription(description: string, theme: 'dark' | 'light' = '
   });
 }
 
-function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (story: any) => void }) {
+function StoryGrid({ stories, onStoryClick, isPreview = false }: { stories: any[], onStoryClick: (story: any) => void, isPreview?: boolean }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 ${isPreview ? 'category-preview story-grid' : ''}`}>
       {stories.map((story) => (
         <button 
           key={story.id}
@@ -900,9 +1083,9 @@ function StoryGrid({ stories, onStoryClick }: { stories: any[], onStoryClick: (s
   );
 }
 
-function ArticleList({ articles, onArticleClick }: { articles: Article[], onArticleClick: (article: Article) => void }) {
+function ArticleList({ articles, onArticleClick, isPreview = false }: { articles: Article[], onArticleClick: (article: Article) => void, isPreview?: boolean }) {
   return (
-    <div className="space-y-5 md:space-y-6">
+    <div className={`space-y-5 md:space-y-6 ${isPreview ? 'category-preview article-list' : ''}`}>
       {articles.map((article) => (
         <ArticleCard key={article.id} article={article} onClick={() => onArticleClick(article)} />
       ))}
@@ -1013,13 +1196,60 @@ function ArticleReader({ article, onClose }: { article: Article, onClose: () => 
   );
 }
 
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({ title, onClick }: { title: string, onClick?: () => void }) {
+  if (!onClick) {
+    return (
+      <div className="mb-4 text-left">
+        <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+          {title}
+        </h3>
+      </div>
+    );
+  }
+
   return (
     <div className="mb-4 text-left">
-      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white">
-        {title}
-      </h3>
+      <button
+        type="button"
+        onClick={onClick}
+        aria-label={`View all ${title}`}
+        className="group inline-flex items-baseline gap-2 rounded-full py-1 text-left text-xl font-bold tracking-tight md:text-2xl"
+      >
+        <span className="text-white transition-colors duration-300 group-hover:text-white/45">
+          {title}
+        </span>
+        <span className="inline-flex self-center translate-y-[0.02em] transition-transform duration-300 group-hover:translate-x-1">
+          <ChevronRight
+            aria-hidden="true"
+            className="h-[1em] w-[1em] text-white/45 transition-colors duration-300 group-hover:text-white"
+            strokeWidth={2.25}
+          />
+        </span>
+      </button>
     </div>
+  );
+}
+
+function CategoryPageHeader({ title, onBack }: { title: string, onBack: () => void }) {
+  return (
+    <header className="mb-8 flex items-center gap-4 md:mb-10">
+      <button
+        type="button"
+        onClick={onBack}
+        aria-label="Back to home"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/20 text-xl backdrop-blur-md transition-all duration-300 hover:bg-white/30 active:scale-95 md:text-2xl"
+      >
+        <ChevronLeft
+          aria-hidden="true"
+          className="h-[1em] w-[1em] translate-y-[0.02em] text-white"
+          strokeWidth={2.25}
+        />
+      </button>
+      <div>
+        <span className="mb-1 block text-xs font-bold uppercase tracking-[0.18em] text-white/40">Full category</span>
+        <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{title}</h1>
+      </div>
+    </header>
   );
 }
 

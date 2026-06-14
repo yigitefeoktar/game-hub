@@ -12,6 +12,24 @@ body {
   margin: 0;
 }
 
+.category-preview > :nth-child(n + 2) {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .story-grid.category-preview > :nth-child(n + 2) {
+    display: block;
+  }
+
+  .article-list.category-preview > :nth-child(n + 2) {
+    display: grid;
+  }
+
+  .category-preview > :nth-child(n + 4) {
+    display: none !important;
+  }
+}
+
 .article-card {
   background:
     radial-gradient(circle at 38% 38%, rgb(var(--article-card-accent) / 0.2), transparent 38%),
@@ -71,4 +89,46 @@ body {
 * {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@property --github-top-mask-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --github-bottom-mask-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.github-repository-list {
+  --github-top-mask-alpha: 0;
+  --github-bottom-mask-alpha: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--github-top-mask-alpha)) 0,
+    #000 18px,
+    #000 calc(100% - 18px),
+    rgba(0, 0, 0, var(--github-bottom-mask-alpha)) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--github-top-mask-alpha)) 0,
+    #000 18px,
+    #000 calc(100% - 18px),
+    rgba(0, 0, 0, var(--github-bottom-mask-alpha)) 100%
+  );
+  transition:
+    --github-top-mask-alpha 300ms ease-out,
+    --github-bottom-mask-alpha 300ms ease-out;
+}
+
+.github-repository-list-at-top {
+  --github-top-mask-alpha: 1;
+}
+
+.github-repository-list-at-bottom {
+  --github-bottom-mask-alpha: 1;
 }
