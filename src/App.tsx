@@ -36,7 +36,7 @@ const FEATURED_GAMES = [
     description: 'Dodge, shoot, and survive in a neon arena where every bullet keeps bouncing.',
     coverUrl: '/assets/hero-ricochet-arena.png',
     iconUrl: '/icons/ricochet-arena.png',
-    gameUrl: 'https://ricochet-arena.vercel.app',
+    gameUrl: 'https://the-ricochet-arena.ai.studio',
   },
 ];
 
@@ -50,7 +50,7 @@ const ALL_GAMES = [
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
-  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://ricochet-arena.vercel.app', status: 'Beta' },
+  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://the-ricochet-arena.ai.studio', status: 'Beta' },
 ];
 
 const STATUS_ORDER: Record<string, number> = {
