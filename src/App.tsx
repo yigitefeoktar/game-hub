@@ -42,6 +42,7 @@ const FEATURED_GAMES = [
 
 const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+  { id: 'divide-to-one', title: 'Divide to One', iconUrl: '/icons/divide-to-one.png', gameUrl: 'https://divide-to-one.vercel.app', status: 'Live' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
