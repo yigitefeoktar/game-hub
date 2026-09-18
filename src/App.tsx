@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, Star, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, Star, X } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
 
 // --- MOCK DATA ---
@@ -32,7 +32,7 @@ const FEATURED_GAMES = [
     id: 'featured-ricochet-arena',
     title: 'Ricochet Arena',
     subtitle: 'ACTION',
-    tag: 'Beta',
+    tag: 'Live',
     description: 'Dodge, shoot, and survive in a neon arena where every bullet keeps bouncing.',
     coverUrl: '/assets/hero-ricochet-arena.png',
     iconUrl: '/icons/ricochet-arena.png',
@@ -44,13 +44,13 @@ const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
-  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Live' },
+  { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
   { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
   { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
-  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://the-ricochet-arena.ai.studio', status: 'Beta' },
+  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://the-ricochet-arena.ai.studio', status: 'Live' },
 ];
 
 const STATUS_ORDER: Record<string, number> = {
@@ -429,7 +429,9 @@ export default function App() {
   const [heroDirection, setHeroDirection] = useState(1);
   const [isDesktopHero, setIsDesktopHero] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CategoryPage | null>(() => getCategoryFromHash());
+  const [isScrollCueVisible, setIsScrollCueVisible] = useState(false);
   const dragMovedRef = useRef(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const activeHero = FEATURED_GAMES[activeHeroIndex];
 
@@ -471,6 +473,24 @@ export default function App() {
     window.addEventListener('hashchange', updateCategory);
     return () => window.removeEventListener('hashchange', updateCategory);
   }, []);
+
+  React.useEffect(() => {
+    const updateScrollCue = () => {
+      const pageHasMoreContent =
+        document.documentElement.scrollHeight - window.innerHeight > 96;
+
+      setIsScrollCueVisible(window.scrollY < 24 && pageHasMoreContent);
+    };
+
+    updateScrollCue();
+    window.addEventListener('scroll', updateScrollCue, { passive: true });
+    window.addEventListener('resize', updateScrollCue);
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollCue);
+      window.removeEventListener('resize', updateScrollCue);
+    };
+  }, [activeCategory]);
 
   // Stop body scroll when a fullscreen game, story modal, or article reader is active
   React.useEffect(() => {
@@ -678,6 +698,36 @@ export default function App() {
           I use AI to improve the English and readability of my articles. The research, ideas, and opinions in them are my own.
         </p>
       </footer>
+
+      <AnimatePresence>
+        {isScrollCueVisible && !activeGame && !activeStory && !activeArticle && !isCreatorOpen && (
+          <motion.button
+            type="button"
+            aria-label="Scroll down to see more"
+            title="See more below"
+            onClick={() => {
+              window.scrollBy({
+                top: Math.max(window.innerHeight * 0.72, 420),
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+              });
+            }}
+            initial={{ opacity: 0, y: 8, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.92 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="fixed left-1/2 z-40 flex h-11 w-11 -translate-x-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 active:scale-95"
+            style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 1rem)' }}
+          >
+            <motion.span
+              aria-hidden="true"
+              animate={prefersReducedMotion ? undefined : { y: [-1, 4, -1] }}
+              transition={prefersReducedMotion ? undefined : { duration: 1.55, ease: 'easeInOut', repeat: Infinity }}
+            >
+              <ArrowDown className="h-7 w-7" strokeWidth={2.25} />
+            </motion.span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Fullscreen Game Overlay */}
       <AnimatePresence>
