@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, Star, X } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
+import GameExitControl from './GameExitControl';
 
 // --- MOCK DATA ---
 // Replace the gameUrls with your actual game links, and icons with your own artwork.
@@ -740,16 +741,7 @@ export default function App() {
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
             className="fixed inset-0 z-50 bg-black flex flex-col"
           >
-            {/* The Floating X Button */}
-            <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
-              <button 
-                onClick={() => setActiveGame(null)}
-                className="bg-black/50 hover:bg-black/70 backdrop-blur-xl border border-white/20 p-4 rounded-full transition-all group flex items-center justify-center shadow-xl hover:scale-105 active:scale-95"
-                title="Close Game"
-              >
-                <X className="w-6 h-6 text-white group-hover:text-red-400 transition-colors" strokeWidth={2.5} />
-              </button>
-            </div>
+            <GameExitControl onClose={() => setActiveGame(null)} />
             
             {/* Game Iframe */}
             {/* Important: allow full capabilities to the web game inside the iframe */}
