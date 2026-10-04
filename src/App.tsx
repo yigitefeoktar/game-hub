@@ -48,6 +48,7 @@ const ALL_GAMES = [
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
   { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
+  { id: 'spawner-siege', title: 'spawner siege', iconUrl: '/icons/spawner-siege.png', gameUrl: 'https://memory-arena-sandy.vercel.app/', status: 'Beta' },
   { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
