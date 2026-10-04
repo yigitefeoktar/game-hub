@@ -4,8 +4,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
 import GameExitControl from './GameExitControl';
 
-// --- MOCK DATA ---
-// Replace the gameUrls with your actual game links, and icons with your own artwork.
 const FEATURED_GAME = {
   id: 'featured',
   title: 'War of Planets',
@@ -41,37 +39,26 @@ const FEATURED_GAMES = [
   },
 ];
 
-const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+const START_HERE_GAMES = [
   { id: 'divide-to-one', title: 'Divide to One', iconUrl: '/icons/divide-to-one.png', gameUrl: 'https://divide-to-one.vercel.app', status: 'Live' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
-  { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
   { id: 'spawner-siege', title: 'spawner siege', iconUrl: '/icons/spawner-siege.png', gameUrl: 'https://memory-arena-sandy.vercel.app/', status: 'Beta' },
+  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
+  { id: 'war-of-planets', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+];
+
+const FIRST_GAMES = [
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
+  { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
+];
+
+const COMING_SOON_GAMES = [
   { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
-  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
-  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
 ];
-
-const STATUS_ORDER: Record<string, number> = {
-  Live: 0,
-  Beta: 1,
-  Prototype: 2,
-  'Coming Soon': 3,
-};
-
-const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
-  const statusDifference = (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99);
-
-  if (statusDifference !== 0) {
-    return statusDifference;
-  }
-
-  return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
-});
 
 const GITHUB_PROJECTS = [
   { title: 'Game Hub', description: 'The home for all of my games and builder notes.', repoUrl: 'https://github.com/yigitefeoktar/game-hub' },
@@ -673,10 +660,20 @@ export default function App() {
         </div>
         </div>
 
-        {/* All Games Grid */}
+        {/* Curated Games */}
+        <section className="px-6 md:px-0 pb-4">
+          <SectionHeader title="Best Games" />
+          <GameGrid games={START_HERE_GAMES} onPlay={(game) => setActiveGame(game)} />
+        </section>
+
+        <section className="px-6 md:px-0 pb-4">
+          <SectionHeader title="Older Games" />
+          <GameGrid games={FIRST_GAMES} onPlay={(game) => setActiveGame(game)} />
+        </section>
+
         <section className="px-6 md:px-0 pb-12">
-          <SectionHeader title="All Games" />
-          <GameGrid games={SORTED_GAMES} onPlay={(game) => setActiveGame(game)} />
+          <SectionHeader title="Coming Soon" />
+          <GameGrid games={COMING_SOON_GAMES} onPlay={(game) => setActiveGame(game)} />
         </section>
 
         {/* Behind the Games Section */}
@@ -1330,7 +1327,7 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
           className={`flex flex-col items-center text-center group w-full ${isComingSoon ? 'cursor-default' : ''}`}
         >
           {/* Squircle App Icon equivalent */}
-          <div className={`w-full aspect-square relative rounded-2xl md:rounded-3xl overflow-hidden mb-2 bg-[#222] shadow-lg transition-transform duration-300 ${isComingSoon ? '' : 'group-hover:scale-[1.03] active:scale-95'}`}>
+          <div className={`relative mb-2 aspect-square w-full overflow-hidden rounded-2xl bg-[#222] shadow-lg transition-transform duration-300 md:rounded-3xl ${isComingSoon ? '' : 'group-hover:scale-[1.03] active:scale-95'}`}>
             <img 
               src={game.iconUrl} 
               alt={game.title} 
