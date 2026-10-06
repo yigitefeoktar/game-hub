@@ -52,7 +52,7 @@ const ALL_GAMES = [
   { id: 'compute-the-agi-race', title: 'Compute', iconUrl: '/icons/ai-test-compute-agi-race-text/compute-text-option-1.png', status: 'Coming Soon' },
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
-  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Live' },
+  { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
   { id: 'memory-arena-survival', title: 'Memory Arena Survival', iconUrl: '/icons/memory-arena-survival.png', gameUrl: 'https://memory-arena-survival.vercel.app/', status: 'Live' },
 ];
