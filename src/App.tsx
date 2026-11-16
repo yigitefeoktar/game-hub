@@ -56,7 +56,7 @@ const ALL_GAMES = [
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
   { id: 'memory-arena-survival', title: 'Memory Arena Survival', iconUrl: '/icons/memory-arena-survival.png', gameUrl: 'https://memory-arena-survival.vercel.app/', status: 'Live' },
-  { id: 'opening-shuffle', title: 'Opening Shuffle', iconUrl: '/icons/opening-shuffle.png', gameUrl: 'https://opening-shuffle.vercel.app/', status: 'Live' },
+  { id: 'opening-shuffle', title: 'Random Chess', iconUrl: '/icons/random-chess.png', gameUrl: 'https://opening-shuffle.vercel.app/', status: 'Live' },
 ];
 
 const STATUS_ORDER: Record<string, number> = {
