@@ -1,0 +1,11 @@
+Opening Shuffle icon
+
+Chess piece artwork by Colin M. L. Burnett (Cburnett).
+Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported.
+https://creativecommons.org/licenses/by-sa/3.0/
+
+Source SVGs: https://github.com/lichess-org/lila/tree/master/public/piece/cburnett
+Source PNG: https://opening-shuffle.vercel.app/pieces/bN.png
+Changes: The source PNG was composited over a warm gold (#edbe84) background.
+The knight artwork retains its original size and placement. The resulting icon
+is distributed under the same CC BY-SA 3.0 license.
