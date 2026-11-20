@@ -11,6 +11,7 @@ const FEATURED_GAME = {
   title: 'War of Planets',
   subtitle: 'STRATEGY',
   tag: 'Live',
+  recommendationOrder: 2,
   description: 'Command one of four unique factions in a strategic battle for total galactic control!',
   coverUrl: '/assets/war-of-planets.png',
   iconUrl: '/icons/war-of-planets-ai.png',
@@ -23,7 +24,7 @@ const FEATURED_GAMES = [
     id: 'featured-100-player-chess',
     title: '100 Player Chess',
     subtitle: 'STRATEGY',
-    tag: 'Prototype',
+    tag: 'Live',
     description: 'A massive chess experiment where armies, chaos, and territory collide at unusual scale.',
     coverUrl: '/assets/hero-100-player-chess.png',
     iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png',
@@ -34,6 +35,7 @@ const FEATURED_GAMES = [
     title: 'Ricochet Arena',
     subtitle: 'ACTION',
     tag: 'Live',
+    recommendationOrder: 1,
     description: 'Dodge, shoot, and survive in a neon arena where every bullet keeps bouncing.',
     coverUrl: '/assets/hero-ricochet-arena.png',
     iconUrl: '/icons/ricochet-arena.png',
@@ -42,11 +44,11 @@ const FEATURED_GAMES = [
 ];
 
 const ALL_GAMES = [
-  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
+  { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live', recommendationOrder: 2 },
   { id: 'divide-to-one', title: 'Divide to One', iconUrl: '/icons/divide-to-one.png', gameUrl: 'https://divide-to-one.vercel.app', status: 'Live' },
   { id: 'multiply-to-target', title: 'Multiply to Target', iconUrl: '/icons/multiply-to-target.png', gameUrl: 'https://multiply-to-target.vercel.app', status: 'Live' },
   { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: '/games/react-chess-original/', status: 'Live' },
-  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
+  { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Live' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
   { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
   { id: 'spawner-siege', title: 'spawner siege', iconUrl: '/icons/spawner-siege.png', gameUrl: 'https://memory-arena-sandy.vercel.app/', status: 'Coming Soon' },
@@ -54,13 +56,13 @@ const ALL_GAMES = [
   { id: 'machine-craft', title: 'Machine Craft', iconUrl: '/icons/machine-craft.png', status: 'Coming Soon' },
   { id: 'project-red-dot', title: 'Project Red Dot', iconUrl: '/icons/project-red-dot.png', status: 'Coming Soon' },
   { id: 'toy-box', title: 'Toy Box', iconUrl: '/icons/ai-test-toy-box-games/toy-box-games-option-6.png', gameUrl: 'https://toy-box-umber.vercel.app', status: 'Beta' },
-  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
+  { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live', recommendationOrder: 1 },
   { id: 'memory-arena-survival', title: 'Memory Arena Survival', iconUrl: '/icons/memory-arena-survival.png', gameUrl: 'https://memory-arena-survival.vercel.app/', status: 'Live' },
   { id: 'opening-shuffle', title: 'Random Chess', iconUrl: '/icons/random-chess.png', gameUrl: 'https://opening-shuffle.vercel.app/', status: 'Live' },
   { id: '100-player-football', title: '100 Player Football', iconUrl: '/icons/100-player-football.png', gameUrl: 'https://100-player-football.vercel.app/', status: 'Coming Soon' },
   { id: 'growth-arena', title: 'Growth Arena', iconUrl: '/icons/growth-arena.png', gameUrl: 'https://arena-growth-io.vercel.app/', status: 'Coming Soon' },
   { id: 'ability-chess', title: 'Ability Chess', iconUrl: '/icons/ability-chess.png', gameUrl: 'https://ability-chess.vercel.app/', status: 'Live' },
-  { id: 'roadstar-racer', title: 'Roadstar Racer', iconUrl: '/icons/roadstar-racer.png', gameUrl: 'https://roadstar-racer.vercel.app/', status: 'Live' },
+  { id: 'roadstar-racer', title: 'Roadstar Racer', iconUrl: '/icons/roadstar-racer.png', gameUrl: 'https://roadstar-racer.vercel.app/', status: 'Beta' },
 ];
 
 const STATUS_ORDER: Record<string, number> = {
@@ -71,6 +73,12 @@ const STATUS_ORDER: Record<string, number> = {
 };
 
 const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
+  const recommendationDifference = (a.recommendationOrder ?? 99) - (b.recommendationOrder ?? 99);
+
+  if (recommendationDifference !== 0) {
+    return recommendationDifference;
+  }
+
   const statusDifference = (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99);
 
   if (statusDifference !== 0) {
@@ -651,11 +659,12 @@ export default function App() {
               transition={isDesktopHero ? { duration: 0.28, ease: 'easeOut' } : { duration: 0.22, ease: 'easeOut' }}
               className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 md:pb-16 text-center md:text-left items-center md:items-start"
             >
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-2 md:justify-start">
               <img src={activeHero.iconUrl} alt="icon" className="w-6 h-6 rounded-md shadow-sm" />
               <span className="text-xs font-semibold uppercase tracking-wider text-white/80">{activeHero.subtitle}</span>
               <span className="text-xs font-semibold text-white/40">•</span>
               <span className="text-xs font-semibold text-white/60">{activeHero.tag}</span>
+              {'recommendationOrder' in activeHero && <RecommendedBadge />}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 max-w-full md:max-w-md lg:max-w-xl">{activeHero.title}</h2>
             <p className="text-sm md:text-base text-white/70 mb-6 max-w-full md:max-w-sm lg:max-w-md">{activeHero.description}</p>
@@ -1364,6 +1373,14 @@ function getStatusClass(status: string) {
   }
 }
 
+function RecommendedBadge() {
+  return (
+    <span className="inline-flex max-w-full items-center justify-center rounded-full border border-amber-200/30 bg-amber-300/15 px-2 py-0.5 text-[10px] font-semibold leading-tight text-amber-100 md:text-[11px]">
+      Recommended
+    </span>
+  );
+}
+
 function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void }) {
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-7 md:gap-x-6 md:gap-y-9 pb-6">
@@ -1403,6 +1420,11 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
           {game.status && (
             <span className={`mt-1 inline-flex max-w-full items-center justify-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
               {game.status}
+            </span>
+          )}
+          {game.recommendationOrder && (
+            <span className="mt-1 flex max-w-full justify-center">
+              <RecommendedBadge />
             </span>
           )}
         </button>
