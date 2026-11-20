@@ -57,6 +57,10 @@ const ALL_GAMES = [
   { id: 'ricochet-arena', title: 'Ricochet Arena', iconUrl: '/icons/ricochet-arena.png', gameUrl: 'https://so-i-have-a-game-on.vercel.app/', status: 'Live' },
   { id: 'memory-arena-survival', title: 'Memory Arena Survival', iconUrl: '/icons/memory-arena-survival.png', gameUrl: 'https://memory-arena-survival.vercel.app/', status: 'Live' },
   { id: 'opening-shuffle', title: 'Random Chess', iconUrl: '/icons/random-chess.png', gameUrl: 'https://opening-shuffle.vercel.app/', status: 'Live' },
+  { id: '100-player-football', title: '100 Player Football', iconUrl: '/icons/100-player-football.png', gameUrl: 'https://100-player-football.vercel.app/', status: 'Coming Soon' },
+  { id: 'growth-arena', title: 'Growth Arena', iconUrl: '/icons/growth-arena.png', gameUrl: 'https://arena-growth-io.vercel.app/', status: 'Coming Soon' },
+  { id: 'ability-chess', title: 'Ability Chess', iconUrl: '/icons/ability-chess.png', gameUrl: 'https://ability-chess.vercel.app/', status: 'Live' },
+  { id: 'roadstar-racer', title: 'Roadstar Racer', iconUrl: '/icons/roadstar-racer.png', gameUrl: 'https://roadstar-racer.vercel.app/', status: 'Live' },
 ];
 
 const STATUS_ORDER: Record<string, number> = {
