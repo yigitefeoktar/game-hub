@@ -19,7 +19,8 @@
   can fulfill production-build requests from disk without starting a server.
 - `ALL_GAMES` in `src/App.tsx` is the catalogue source. The site filters the existing
   sort into **My Best Games** and **My First Games**, without duplicates. Games with
-  `recommendationOrder` show a separate **Recommended** badge and sort first by that
+  `recommendationOrder` show an orange **Recommended** badge in place of their
+  visible release status (in the grid and hero), and sort first by that
   number (Ricochet Arena: 1, War of Planets: 2), followed by status and title.
   The latter contains Neon Drift, Toy Box, Gemini Clash, and React Chess.
 - Original React Chess is a fixed static archive at `/games/react-chess-original/`,

@@ -663,8 +663,11 @@ export default function App() {
               <img src={activeHero.iconUrl} alt="icon" className="w-6 h-6 rounded-md shadow-sm" />
               <span className="text-xs font-semibold uppercase tracking-wider text-white/80">{activeHero.subtitle}</span>
               <span className="text-xs font-semibold text-white/40">•</span>
-              <span className="text-xs font-semibold text-white/60">{activeHero.tag}</span>
-              {'recommendationOrder' in activeHero && <RecommendedBadge />}
+              {'recommendationOrder' in activeHero ? (
+                <RecommendedBadge />
+              ) : (
+                <span className="text-xs font-semibold text-white/60">{activeHero.tag}</span>
+              )}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 max-w-full md:max-w-md lg:max-w-xl">{activeHero.title}</h2>
             <p className="text-sm md:text-base text-white/70 mb-6 max-w-full md:max-w-sm lg:max-w-md">{activeHero.description}</p>
@@ -1375,7 +1378,7 @@ function getStatusClass(status: string) {
 
 function RecommendedBadge() {
   return (
-    <span className="inline-flex max-w-full items-center justify-center rounded-full border border-amber-200/30 bg-amber-300/15 px-2 py-0.5 text-[10px] font-semibold leading-tight text-amber-100 md:text-[11px]">
+    <span className="inline-flex max-w-full items-center justify-center rounded-full border border-orange-400/60 bg-orange-700 px-2 py-0.5 text-[10px] font-semibold leading-tight text-orange-50 md:text-[11px]">
       Recommended
     </span>
   );
@@ -1417,16 +1420,15 @@ function GameGrid({ games, onPlay }: { games: any[], onPlay: (game: any) => void
             <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-white/10 pointer-events-none" />
           </div>
           <span className={`block w-full truncate font-medium text-[11px] leading-tight md:text-sm ${isComingSoon ? 'opacity-65' : 'opacity-90 group-hover:opacity-100'}`}>{game.title}</span>
-          {game.status && (
-            <span className={`mt-1 inline-flex max-w-full items-center justify-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
-              {game.status}
-            </span>
-          )}
-          {game.recommendationOrder && (
+          {game.recommendationOrder != null ? (
             <span className="mt-1 flex max-w-full justify-center">
               <RecommendedBadge />
             </span>
-          )}
+          ) : game.status ? (
+            <span className={`mt-1 inline-flex max-w-full items-center justify-center rounded-full border px-2 py-0.5 text-[10px] md:text-[11px] font-semibold leading-tight ${getStatusClass(game.status)}`}>
+              {game.status}
+            </span>
+          ) : null}
         </button>
         );
       })}
