@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/yigitefeoktar/react-chess",
+  "sourceCommit": "25875e69fd2292b87946703a9a6d1131034d1753",
+  "sourceDate": "2026-04-26T13:22:03+03:00",
+  "selection": "Earliest commit containing playable game code; preceding root commit 9f02991fc253e050e23f5b332bf357e97e1f6a84 contains only README.md.",
+  "hosting": "Static archive served with the Game Hub main release at /games/react-chess-original/. The newer React Chess deployment is preserved.",
+  "gameSourceChanges": [],
+  "hostingAdaptations": [
+    "Vite base path /games/react-chess-original/",
+    "Original Tailwind 3 browser runtime pinned and served locally instead of CDN",
+    "Native scrollbars hidden while retaining scrolling"
+  ],
+  "buildVersions": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "chess.js": "1.4.0",
+    "vite": "6.4.3"
+  },
+  "tailwindRuntime": {
+    "source": "https://cdn.tailwindcss.com/3.4.17",
+    "sha256": "176e894661aa9cdc9a5cba6c720044cbbf7b8bd80d1c9a142a7c24b1b6c50d15"
+  }
+}

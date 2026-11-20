@@ -45,7 +45,7 @@ const ALL_GAMES = [
   { id: 'featured-grid', title: 'War of Planets', iconUrl: '/icons/war-of-planets-ai.png', gameUrl: 'https://war-of-planets.vercel.app', status: 'Live' },
   { id: 'divide-to-one', title: 'Divide to One', iconUrl: '/icons/divide-to-one.png', gameUrl: 'https://divide-to-one.vercel.app', status: 'Live' },
   { id: 'multiply-to-target', title: 'Multiply to Target', iconUrl: '/icons/multiply-to-target.png', gameUrl: 'https://multiply-to-target.vercel.app', status: 'Live' },
-  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: 'https://react-chess-sage-two.vercel.app', status: 'Coming Soon' },
+  { id: 'react-chess', title: 'React Chess', iconUrl: '/icons/ai-test/react-chess-ai.png', gameUrl: '/games/react-chess-original/', status: 'Live' },
   { id: '100-player-chess', title: '100 Player Chess', iconUrl: '/icons/ai-test-100-player/100-player-chess-option-1.png', gameUrl: 'https://100playerchess.com', status: 'Prototype' },
   { id: 'neon-drift', title: 'Neon Drift', iconUrl: '/icons/ai-test-neon-drift-ship/neon-drift-neon-3.png', gameUrl: 'https://neon-drift-deploy.vercel.app', status: 'Beta' },
   { id: 'gemini-clash-village', title: 'Gemini Clash', iconUrl: '/icons/ai-test-2/gemini-clash-village-ai-2.png', gameUrl: 'https://gemini-clash-village.vercel.app', status: 'Beta' },
@@ -79,6 +79,10 @@ const SORTED_GAMES = [...ALL_GAMES].sort((a, b) => {
 
   return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
 });
+
+const FIRST_GAME_IDS = new Set(['neon-drift', 'toy-box', 'gemini-clash-village', 'react-chess']);
+const BEST_GAMES = SORTED_GAMES.filter((game) => !FIRST_GAME_IDS.has(game.id));
+const FIRST_GAMES = SORTED_GAMES.filter((game) => FIRST_GAME_IDS.has(game.id));
 
 const GITHUB_PROJECTS = [
   { title: 'Game Hub', description: 'The home for all of my games and builder notes.', repoUrl: 'https://github.com/yigitefeoktar/game-hub' },
@@ -680,10 +684,16 @@ export default function App() {
         </div>
         </div>
 
-        {/* All Games Grid */}
+        {/* My Best Games Grid */}
         <section className="px-6 md:px-0 pb-12">
-          <SectionHeader title="All Games" />
-          <GameGrid games={SORTED_GAMES} onPlay={(game) => setActiveGame(game)} />
+          <SectionHeader title="My Best Games" />
+          <GameGrid games={BEST_GAMES} onPlay={(game) => setActiveGame(game)} />
+        </section>
+
+        {/* My First Games Grid */}
+        <section className="px-6 md:px-0 pb-12">
+          <SectionHeader title="My First Games" />
+          <GameGrid games={FIRST_GAMES} onPlay={(game) => setActiveGame(game)} />
         </section>
 
         {/* Behind the Games Section */}
