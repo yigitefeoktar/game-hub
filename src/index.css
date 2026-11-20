@@ -96,6 +96,97 @@ body {
     linear-gradient(rgb(var(--article-card-accent) / 0.06), rgb(var(--article-card-color) / 0.16));
 }
 
+.codex-setup {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  margin-top: 19px;
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid #314842;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at 92% 1%, #254b3e, transparent 72%), #111917;
+  color: #f5f5f3;
+}
+
+.codex-setup h2 {
+  font-size: clamp(28px, 4.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.codex-setup p {
+  max-width: 31ch;
+  margin: 9px 0 16px;
+  color: #c8d6d0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.codex-setup-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #f5f5f3;
+  color: #080909;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.codex-setup-tree {
+  padding: 11px 13px;
+  border: 1px solid #40534b;
+  border-radius: 10px;
+  background: #0d1613;
+  font: 12px/1.45 ui-monospace, monospace;
+  overflow-wrap: anywhere;
+}
+
+.codex-setup-tree-title,
+.codex-setup-tree li > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: 3px;
+}
+
+.codex-setup-tree-title {
+  margin-bottom: 5px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #2a2d2e;
+  color: #adb2b0;
+}
+
+.codex-setup-tree svg {
+  flex: none;
+  color: #bef3dc;
+}
+
+.codex-setup-tree ul ul {
+  padding-left: 24px;
+  color: #c4ccc8;
+}
+
+.codex-setup-tree ul ul li {
+  padding-block: 3px;
+}
+
+@media (max-width: 640px) {
+  .codex-setup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .codex-setup-link {
+    min-height: 44px;
+  }
+}
+
 /* Hide scrollbars globally to make it feel more like a native app */
 ::-webkit-scrollbar {
   display: none;

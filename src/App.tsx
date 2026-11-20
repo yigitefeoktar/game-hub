@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ArrowDown, ArrowLeft, ArrowRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, Star, X } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, FileText, Folder, FolderGit2, Github, Star, X } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
 import GameExitControl from './GameExitControl';
@@ -696,6 +696,7 @@ export default function App() {
         <section className="px-6 md:px-0">
           <SectionHeader title="AI Builder Notes" onClick={() => openCategory('ai-builder-notes')} />
           <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} isPreview />
+          <CodexSetupFeature />
         </section>
 
       </main>
@@ -1131,6 +1132,39 @@ function StoryGrid({ stories, onStoryClick, isPreview = false }: { stories: any[
         </button>
       ))}
     </div>
+  );
+}
+
+function CodexSetupFeature() {
+  return (
+    <section className="codex-setup" aria-labelledby="codex-setup-title">
+      <div>
+        <h2 id="codex-setup-title">My Codex Setup</h2>
+        <p>Get the skills and project instructions I use to build, test, and ship games.</p>
+        <button className="codex-setup-link" type="button" title="Repository link coming soon" disabled>
+          <Github size={16} aria-hidden="true" />
+          View on GitHub
+          <ArrowUpRight size={15} aria-hidden="true" />
+        </button>
+      </div>
+
+      <div className="codex-setup-tree">
+        <div className="codex-setup-tree-title" id="codex-setup-tree-title">
+          <FolderGit2 size={16} aria-hidden="true" />
+          Repository contents
+        </div>
+        <ul aria-labelledby="codex-setup-tree-title">
+          <li><span><FileText size={16} aria-hidden="true" /> AGENTS.md</span></li>
+          <li>
+            <span><Folder size={16} aria-hidden="true" /> skills/</span>
+            <ul>
+              <li>game-deployment/</li>
+              <li>game-audio-review/</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
   );
 }
 
