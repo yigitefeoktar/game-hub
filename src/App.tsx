@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, FileText, Folder, FolderGit2, Github, Star, X } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, ExternalLink, FileText, Folder, FolderGit2, Star, X } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import HOW_TO_START_VIBE_CODING from './how-to-start-vibe-coding.txt?raw';
 import GameExitControl from './GameExitControl';
@@ -696,6 +696,8 @@ export default function App() {
           <GameGrid games={FIRST_GAMES} onPlay={(game) => setActiveGame(game)} />
         </section>
 
+        <AgentSetupFeature />
+
         {/* Behind the Games Section */}
         <section className="px-6 md:px-0 pb-4">
           <SectionHeader title="Behind the Games" onClick={() => openCategory('behind-the-games')} />
@@ -706,7 +708,6 @@ export default function App() {
         <section className="px-6 md:px-0">
           <SectionHeader title="AI Builder Notes" onClick={() => openCategory('ai-builder-notes')} />
           <ArticleList articles={ARTICLES} onArticleClick={setActiveArticle} isPreview />
-          <CodexSetupFeature />
         </section>
 
       </main>
@@ -1145,25 +1146,25 @@ function StoryGrid({ stories, onStoryClick, isPreview = false }: { stories: any[
   );
 }
 
-function CodexSetupFeature() {
+function AgentSetupFeature() {
   return (
-    <section className="codex-setup" aria-labelledby="codex-setup-title">
+    <section className="agent-setup mx-6 md:mx-0" aria-labelledby="agent-setup-title">
       <div>
-        <h2 id="codex-setup-title">My Codex Setup</h2>
+        <h2 id="agent-setup-title">My Agent Setup</h2>
         <p>Get the skills and project instructions I use to build, test, and ship games.</p>
-        <button className="codex-setup-link" type="button" title="Repository link coming soon" disabled>
-          <Github size={16} aria-hidden="true" />
+        <button className="agent-setup-link" type="button" title="Repository link coming soon" disabled>
+          <img src="/assets/github-invertocat-black.svg" alt="" width={16} height={16} />
           View on GitHub
           <ArrowUpRight size={15} aria-hidden="true" />
         </button>
       </div>
 
-      <div className="codex-setup-tree">
-        <div className="codex-setup-tree-title" id="codex-setup-tree-title">
+      <div className="agent-setup-tree">
+        <div className="agent-setup-tree-title" id="agent-setup-tree-title">
           <FolderGit2 size={16} aria-hidden="true" />
           Repository contents
         </div>
-        <ul aria-labelledby="codex-setup-tree-title">
+        <ul aria-labelledby="agent-setup-tree-title">
           <li><span><FileText size={16} aria-hidden="true" /> AGENTS.md</span></li>
           <li>
             <span><Folder size={16} aria-hidden="true" /> skills/</span>
