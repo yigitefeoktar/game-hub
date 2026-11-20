@@ -138,6 +138,15 @@ body {
   line-height: 1.45;
 }
 
+.agent-setup-link:hover {
+  background: #bef3dc;
+}
+
+.agent-setup-link:focus-visible {
+  outline: 2px solid #bef3dc;
+  outline-offset: 4px;
+}
+
 .agent-setup-tree {
   padding: 11px 13px;
   border: 1px solid #40534b;

@@ -1164,11 +1164,16 @@ function AgentSetupFeature() {
       <div>
         <h2 id="agent-setup-title">My Agent Setup</h2>
         <p>Get the skills and project instructions I use to build, test, and ship games.</p>
-        <button className="agent-setup-link" type="button" title="Repository link coming soon" disabled>
+        <a
+          className="agent-setup-link"
+          href="https://github.com/yigitefeoktar/Ystack"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src="/assets/github-invertocat-black.svg" alt="" width={16} height={16} />
           View on GitHub
           <ArrowUpRight size={15} aria-hidden="true" />
-        </button>
+        </a>
       </div>
 
       <div className="agent-setup-tree">
