@@ -19,7 +19,7 @@
   can fulfill production-build requests from disk without starting a server.
 - `ALL_GAMES` in `src/App.tsx` is the catalogue source. The site filters the existing
   sort into **My Best Games** and **My First Games**, without duplicates. Games with
-  `recommendationOrder` show a bright orange **bext** badge with the same transparent
+  `recommendationOrder` show a bright orange **Best** badge with the same transparent
   background and border opacity as the other tags, in place of their
   visible release status (in the grid and hero), and sort first by that
   number (Ricochet Arena: 1, War of Planets: 2), followed by status and title.
